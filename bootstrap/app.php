@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -59,13 +59,10 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+     'auth' => App\Http\Middleware\Authenticate::class,
+     'secure-headers' => Bepsvpt\SecureHeaders\SecureHeadersMiddleware::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -78,10 +75,9 @@ $app->singleton(
 |
 */
 
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -95,10 +91,16 @@ $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 */
 
 $app->router->group([
-    'prefix' => 'api',
     'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__.'/../routes/web.php';
+], function (Laravel\Lumen\Routing\Router $router) {
+    $router->group(['prefix' => 'api'], function ($router) {
+        require __DIR__.'/../routes/web.php';
+    });
+
+    $router->get('{url:.*}', [
+        'middleware' => ['secure-headers'],
+        'uses' => 'BaseController@index',
+    ]);
 });
 
 return $app;
