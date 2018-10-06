@@ -6,10 +6,13 @@
   "type": "project",
   "require": {
     "php": "^7.2",
+    "algolia/algoliasearch-client-php": "1.27.*",
     "bepsvpt/secure-headers": "5.3.*",
     "doctrine/dbal": "2.8.*",
+    "gregwar/captcha": "1.1.*",
     "guzzlehttp/guzzle": "6.3.*",
     "laravel/lumen-framework": "5.7.*",
+    "laravel/scout": "5.0.*",
     "laravel/tinker": "1.0.*",
     "predis/predis": "1.1.*",
     "spatie/laravel-fractal": "5.4.*",
