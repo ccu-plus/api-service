@@ -82,14 +82,4 @@ class Course extends Model
             'professors' => $this->professors->pluck('name')->toArray(),
         ];
     }
-
-    /**
-     * Get the value used to index the model.
-     *
-     * @return mixed
-     */
-    public function getScoutKey()
-    {
-        return $this->code;
-    }
 }
