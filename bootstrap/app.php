@@ -76,6 +76,7 @@ $app->singleton(
 */
 
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\ScoutServiceProvider::class);
 $app->register(Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 
