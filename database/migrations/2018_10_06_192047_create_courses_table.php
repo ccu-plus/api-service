@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('name', 64);
             $table->tinyInteger('department_id')->unsigned();
             $table->tinyInteger('dimension_id')->unsigned()->nullable();
-            $table->timestamps();});
+        });
     }
 
     /**
