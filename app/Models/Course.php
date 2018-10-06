@@ -79,7 +79,7 @@ class Course extends Model
             'college' => $this->department->college,
             'department' => $this->department->name,
             'dimension' => optional($this->dimension)->name,
-            'professors' => $this->professors->pluck('name')->toArray(),
+            'professors' => $this->professors->pluck('name')->unique()->values()->toArray(),
         ];
     }
 }
