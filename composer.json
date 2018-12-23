@@ -6,7 +6,7 @@
   "type": "project",
   "require": {
     "php": "^7.2",
-    "algolia/algoliasearch-client-php": "2.1.*",
+    "algolia/algoliasearch-client-php": "1.27.*",
     "bepsvpt/secure-headers": "5.3.*",
     "doctrine/dbal": "2.9.*",
     "gregwar/captcha": "1.1.*",
