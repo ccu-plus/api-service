@@ -61,7 +61,6 @@ $app->singleton(
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
-     'secure-headers' => Bepsvpt\SecureHeaders\SecureHeadersMiddleware::class,
  ]);
 
 /*
@@ -98,10 +97,7 @@ $app->router->group([
         require __DIR__.'/../routes/web.php';
     });
 
-    $router->get('{url:.*}', [
-        'middleware' => ['secure-headers'],
-        'uses' => 'BaseController@index',
-    ]);
+    $router->get('{url:.*}', 'BaseController@index');
 });
 
 return $app;
