@@ -7,12 +7,12 @@ use Laravel\Lumen\Routing\Router;
 $router->group(['prefix' => 'courses'], function (Router $router) {
     $router->get('search', 'CourseController@search');
     $router->get('waterfall', 'CourseController@waterfall');
-    $router->get('{courses}', 'CourseController@show');
+    $router->get('{code}', 'CourseController@show');
 
-    $router->group(['prefix' => '{courses}/comments'], function (Router $router) {
-        $router->get('/', 'CommentControl@index');
-        $router->post('/', 'CommentControl@store');
-        $router->patch('{comments}/like', 'CommentControl@like');
+    $router->group(['prefix' => '{code}/comments'], function (Router $router) {
+        $router->get('/', 'CommentController@index');
+        $router->post('/', 'CommentController@store');
+        $router->patch('{comments}/like', 'CommentController@like');
     });
 });
 
