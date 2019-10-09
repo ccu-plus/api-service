@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', true),
+    'queue' => env('SCOUT_QUEUE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,6 @@ return [
 
     'chunk' => [
         'searchable' => 500,
-
         'unsearchable' => 500,
     ],
 
@@ -71,7 +70,7 @@ return [
     |
     */
 
-    'soft_delete' => false,
+    'soft_delete' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +85,6 @@ return [
 
     'algolia' => [
         'id' => env('ALGOLIA_APP_ID', ''),
-
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 

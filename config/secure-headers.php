@@ -40,7 +40,7 @@ return [
      * Available Value: 'deny', 'sameorigin', 'allow-from <uri>'
      */
 
-    'x-frame-options' => 'sameorigin',
+    'x-frame-options' => 'deny',
 
     /*
      * X-Permitted-Cross-Domain-Policies
@@ -51,6 +51,14 @@ return [
      */
 
     'x-permitted-cross-domain-policies' => 'none',
+
+    /*
+     * X-Power-By
+     *
+     * Note: it will not add to response header if the value is empty string.
+     */
+
+    'x-power-by' => '',
 
     /*
      * X-XSS-Protection
@@ -106,7 +114,9 @@ return [
 
         'max-age' => 15552000,
 
-        'include-sub-domains' => false,
+        'include-sub-domains' => true,
+
+        'preload' => true,
     ],
 
     /*
@@ -415,13 +425,17 @@ return [
 
             'self' => true,
 
-            'unsafe-inline' => false,
+            'unsafe-inline' => true,
 
             'add-generated-nonce' => false,
         ],
 
         'img-src' => [
             'self' => true,
+
+            'schemes' => [
+                'data:',
+            ],
         ],
 
         'default-src' => [
