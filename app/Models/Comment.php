@@ -2,8 +2,17 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property boolean $anonymous
+ * @property string $content
+ * @property Carbon $created_at
+ * @property integer $likes
+ * @property User $user
+ */
 class Comment extends Model
 {
     use SoftDeletes;
@@ -23,4 +32,14 @@ class Comment extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Get the user that owns the comment.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
