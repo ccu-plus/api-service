@@ -2,11 +2,9 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-try {
-    (new Dotenv\Dotenv(dirname(__DIR__)))->load();
-} catch (Dotenv\Exception\InvalidPathException $e) {
-    //
-}
+(new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
+    dirname(__DIR__)
+))->bootstrap();
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +57,12 @@ $app->singleton(
 |
 */
 
+if ($app->environment('local')) {
+    $app->middleware([
+        Barryvdh\Cors\HandleCors::class,
+    ]);
+}
+
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
  ]);
@@ -74,10 +78,16 @@ $app->singleton(
 |
 */
 
+if ($app->environment('local')) {
+    $app->register(Barryvdh\Cors\ServiceProvider::class);
+}
+
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\ScoutServiceProvider::class);
 $app->register(Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
+$app->register(Spatie\Fractal\FractalServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
