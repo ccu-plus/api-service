@@ -15,7 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->char('code', 7)->unique();
+            $table->char('code', 7)->charset('latin1')->collation('latin1_general_ci')->unique();
             $table->string('name', 64);
             $table->tinyInteger('department_id')->unsigned();
             $table->tinyInteger('dimension_id')->unsigned()->nullable();

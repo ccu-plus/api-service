@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->text('content');
             $table->boolean('anonymous');
             $table->tinyInteger('likes')->unsigned()->default(0);
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
             $table->dateTime('deleted_at')->nullable();
         });
     }

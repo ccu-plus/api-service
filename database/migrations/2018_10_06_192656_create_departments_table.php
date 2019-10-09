@@ -17,7 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->tinyIncrements('id');
             $table->string('college', 8);
             $table->string('name', 16);
-            $table->char('code', 4)->unique();
+            $table->char('code', 4)->charset('latin1')->collation('latin1_general_ci')->unique();
 
             $table->unique(['college', 'name']);
         });
