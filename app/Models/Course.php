@@ -2,8 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 
+/**
+ * @property string $code
+ * @property string $name
+ * @property Department $department
+ * @property Dimension $dimension
+ * @property Collection $semesters
+ * @property Collection $professors
+ * @property Collection $comments
+ */
 class Course extends Model
 {
     use Searchable;
@@ -11,20 +23,20 @@ class Course extends Model
     /**
      * The comments that belong to the course.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function comments()
+    public function comments(): BelongsToMany
     {
-        return $this->belongsToMany(Comment::class)
+        return $this->belongsToMany(Comment::class, 'course_comment')
             ->withPivot('professor_id');
     }
 
     /**
      * Get the department that owns the course.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function department()
+    public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
     }
@@ -32,9 +44,9 @@ class Course extends Model
     /**
      * Get the dimension that owns the course.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function dimension()
+    public function dimension(): BelongsTo
     {
         return $this->belongsTo(Dimension::class);
     }
@@ -42,20 +54,20 @@ class Course extends Model
     /**
      * The professors that belong to the course.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function professors()
+    public function professors(): BelongsToMany
     {
         return $this->belongsToMany(Professor::class)
-            ->withPivot('class', 'credit');
+            ->withPivot('semester_id', 'class', 'credit');
     }
 
     /**
      * The semesters that belong to the course.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function semesters()
+    public function semesters(): BelongsToMany
     {
         return $this->belongsToMany(Semester::class);
     }
@@ -65,7 +77,7 @@ class Course extends Model
      *
      * @return array
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         foreach (['department', 'dimension', 'professors'] as $relation) {
             if (!$this->relationLoaded($relation)) {
