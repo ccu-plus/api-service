@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\Semester;
 use App\Transformers\CourseTransformer;
+use CCUPLUS\EloquentORM\Course;
+use CCUPLUS\EloquentORM\Semester;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
