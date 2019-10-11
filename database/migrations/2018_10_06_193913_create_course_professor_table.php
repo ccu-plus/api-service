@@ -17,8 +17,6 @@ class CreateCourseProfessorTable extends Migration
             $table->mediumInteger('course_id')->unsigned();
             $table->smallInteger('professor_id')->unsigned();
             $table->tinyInteger('semester_id')->unsigned();
-            $table->char('class', 2)->charset('latin1')->collation('latin1_general_ci');
-            $table->tinyInteger('credit')->unsigned();
 
             $table->primary(['course_id', 'professor_id', 'semester_id']);
         });

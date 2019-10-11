@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 
@@ -31,6 +32,7 @@ class ImportCoursesData extends Migration
             $courseId = DB::table('courses')->insertGetId([
                 'code' => $course['code'],
                 'name' => $course['name'],
+                'credit' => Arr::first(Arr::first($course['professors']))['credit'],
                 'department_id' => $departments[$course['department']],
                 'dimension_id' => $dimensions[$course['dimension']] ?? null,
             ]);
@@ -60,8 +62,6 @@ class ImportCoursesData extends Migration
                         'course_id' => $courseId,
                         'professor_id' => $professors[$user['name']],
                         'semester_id' => $semesters[$semester],
-                        'class' => $user['class'],
-                        'credit' => $user['credit'],
                     ];
                 }
             }
