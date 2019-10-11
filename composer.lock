@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6122a5ce044e519e99c1e6f42372221",
+    "content-hash": "0b797fadb1da880762858a95f78c4317",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -139,6 +139,130 @@
                 "referrer-policy"
             ],
             "time": "2019-09-06T15:58:57+00:00"
+        },
+        {
+            "name": "ccu-plus/course-import",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccu-plus/course-import.git",
+                "reference": "fa4467872942196ebc260743a30111810b92219f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccu-plus/course-import/zipball/fa4467872942196ebc260743a30111810b92219f",
+                "reference": "fa4467872942196ebc260743a30111810b92219f",
+                "shasum": ""
+            },
+            "require": {
+                "ccu-plus/eloquent-orm": "master",
+                "ext-zlib": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "illuminate/console": "^6.2",
+                "illuminate/database": "^6.2",
+                "illuminate/support": "^6.2",
+                "paquettg/php-html-parser": "^2.1",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CCUPLUS\\CourseImport\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CCUPLUS\\CourseImport\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CCUPLUS\\CourseImport\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "AGPL"
+            ],
+            "authors": [
+                {
+                    "name": "BePsvPT",
+                    "email": "bepsvpt@protonmail.com"
+                }
+            ],
+            "description": "Provide artisan commands for core module to import course data to database from National Chung Cheng University.",
+            "keywords": [
+                "ccu-plus"
+            ],
+            "support": {
+                "source": "https://github.com/ccu-plus/course-import/tree/master",
+                "issues": "https://github.com/ccu-plus/course-import/issues"
+            },
+            "time": "2019-10-11T13:59:33+00:00"
+        },
+        {
+            "name": "ccu-plus/eloquent-orm",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccu-plus/eloquent-orm.git",
+                "reference": "be30eb26e64f8d55382d295bb56ac3f951b6f5bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/be30eb26e64f8d55382d295bb56ac3f951b6f5bf",
+                "reference": "be30eb26e64f8d55382d295bb56ac3f951b6f5bf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^6.2",
+                "illuminate/contracts": "^6.2",
+                "illuminate/database": "^6.2",
+                "illuminate/support": "^6.2",
+                "laravel/scout": "^7.2",
+                "nesbot/carbon": "^2.25",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CCUPLUS\\EloquentORM\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CCUPLUS\\EloquentORM\\Tests\\": "tests/"
+                },
+                "classmap": [
+                    "tests/migrations"
+                ]
+            },
+            "license": [
+                "AGPL"
+            ],
+            "authors": [
+                {
+                    "name": "BePsvPT",
+                    "email": "bepsvpt@protonmail.com"
+                }
+            ],
+            "description": "Eloquent ORM for CCU PLUS API Service.",
+            "keywords": [
+                "ccu-plus"
+            ],
+            "support": {
+                "source": "https://github.com/ccu-plus/eloquent-orm/tree/master",
+                "issues": "https://github.com/ccu-plus/eloquent-orm/issues"
+            },
+            "time": "2019-10-11T13:56:38+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2735,6 +2859,102 @@
                 "serialize"
             ],
             "time": "2019-09-02T21:07:33+00:00"
+        },
+        {
+            "name": "paquettg/php-html-parser",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paquettg/php-html-parser.git",
+                "reference": "d1000936350fed2cb6c54058890d2d19c5ccba4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/d1000936350fed2cb6c54058890d2d19c5ccba4f",
+                "reference": "d1000936350fed2cb6c54058890d2d19c5ccba4f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "paquettg/string-encode": "~1.0.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^7.5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPHtmlParser\\": "src/PHPHtmlParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
+            "homepage": "https://github.com/paquettg/php-html-parser",
+            "keywords": [
+                "dom",
+                "html",
+                "parser"
+            ],
+            "time": "2019-08-18T18:27:45+00:00"
+        },
+        {
+            "name": "paquettg/string-encode",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paquettg/string-encoder.git",
+                "reference": "a8708e9fac9d5ddfc8fc2aac6004e2cd05d80fee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/a8708e9fac9d5ddfc8fc2aac6004e2cd05d80fee",
+                "reference": "a8708e9fac9d5ddfc8fc2aac6004e2cd05d80fee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "stringEncode": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "Facilitating the process of altering string encoding in PHP.",
+            "homepage": "https://github.com/paquettg/string-encoder",
+            "keywords": [
+                "charset",
+                "encoding",
+                "string"
+            ],
+            "time": "2018-12-21T02:25:09+00:00"
         },
         {
             "name": "phpoption/phpoption",
