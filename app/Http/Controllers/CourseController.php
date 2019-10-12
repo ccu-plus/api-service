@@ -57,7 +57,7 @@ class CourseController extends Controller
      */
     public function show(string $code): JsonResponse
     {
-        $course = Course::with('department', 'dimension', 'semesters', 'professors', 'comments')
+        $course = Course::with('department', 'dimension', 'semesters', 'professors')
             ->where('code', '=', $code)
             ->firstOrFail();
 
