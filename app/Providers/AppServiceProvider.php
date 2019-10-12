@@ -9,6 +9,30 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Boot the authentication services for the application.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->redis();
+    }
+
+    /**
+     * Setup redis driver.
+     *
+     * @return void
+     */
+    protected function redis(): void
+    {
+        if (class_exists(\Redis::class)) {
+            return;
+        }
+
+        $this->app->config->set('database.redis.client', 'predis');
+    }
+
+    /**
      * Register any application services.
      *
      * @return void
