@@ -20,6 +20,7 @@ class CourseTransformer extends TransformerAbstract
         return [
             'code' => $course->code,
             'name' => $course->name,
+            'credit' => $course->credit,
             'department' => $course->department->name,
             'dimension' => optional($course->dimension)->name,
             'semesters' => $course->relationLoaded('semesters') ? $this->semesters($course) : [],
@@ -38,12 +39,11 @@ class CourseTransformer extends TransformerAbstract
      */
     protected function semesters(Course $course): Collection
     {
-        return $course->semesters->map(function ($semester) use ($course) {
+        return $course->semesters->reverse()->values()->map(function ($semester) use ($course) {
             $professors = $course->professors->where('pivot.semester_id', $semester->id);
 
             return [
                 'name' => $semester->name,
-                'credit' => $professors->first()->pivot->credit,
                 'professors' => $professors->pluck('name'),
             ];
         });
