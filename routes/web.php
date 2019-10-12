@@ -25,3 +25,5 @@ $router->group(['prefix' => 'auth'], function (Router $router) {
     $router->post('sign-up', 'AuthController@signUp');
     $router->post('sign-out', 'AuthController@signOut');
 });
+
+$router->get('captcha', 'BaseController@captcha');
