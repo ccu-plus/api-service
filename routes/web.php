@@ -12,7 +12,6 @@ $router->group(['prefix' => 'courses'], function (Router $router) {
     $router->group(['prefix' => '{code}/comments'], function (Router $router) {
         $router->get('/', 'CommentController@index');
         $router->post('/', 'CommentController@store');
-        $router->patch('{comments}/like', 'CommentController@like');
     });
 });
 

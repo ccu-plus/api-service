@@ -16,7 +16,6 @@ class CreateCourseCommentTable extends Migration
         Schema::create('course_comment', function (Blueprint $table) {
             $table->mediumInteger('course_id')->unsigned();
             $table->smallInteger('comment_id')->unsigned();
-            $table->smallInteger('professor_id')->unsigned();
 
             $table->primary(['course_id', 'comment_id']);
         });
