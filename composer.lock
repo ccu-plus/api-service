@@ -210,12 +210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/eloquent-orm.git",
-                "reference": "be30eb26e64f8d55382d295bb56ac3f951b6f5bf"
+                "reference": "3e2f357d6fb284467a10a87e3b30b9c68c9f7578"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/be30eb26e64f8d55382d295bb56ac3f951b6f5bf",
-                "reference": "be30eb26e64f8d55382d295bb56ac3f951b6f5bf",
+                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/3e2f357d6fb284467a10a87e3b30b9c68c9f7578",
+                "reference": "3e2f357d6fb284467a10a87e3b30b9c68c9f7578",
                 "shasum": ""
             },
             "require": {
@@ -262,7 +262,7 @@
                 "source": "https://github.com/ccu-plus/eloquent-orm/tree/master",
                 "issues": "https://github.com/ccu-plus/eloquent-orm/issues"
             },
-            "time": "2019-10-11T13:56:38+00:00"
+            "time": "2019-10-11T14:14:31+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
