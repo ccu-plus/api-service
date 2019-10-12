@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->string('username', 12)->charset('latin1')->collation('latin1_general_ci')->unique();
+            $table->string('username', 16)->charset('latin1')->collation('latin1_general_ci')->unique();
             $table->string('nickname', 24)->unique();
             $table->string('email', 48)->nullable()->unique();
             $table->char('token', 16)->charset('latin1')->collation('latin1_general_cs')->unique();
