@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 class CourseController extends Controller
 {
     /**
+     * 搜尋課程.
+     *
      * @param Request $request
      *
      * @return JsonResponse
@@ -51,6 +53,8 @@ class CourseController extends Controller
     }
 
     /**
+     * 取得課程資訊.
+     *
      * @param string $code
      *
      * @return JsonResponse
