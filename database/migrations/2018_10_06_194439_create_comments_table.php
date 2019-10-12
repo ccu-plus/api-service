@@ -17,9 +17,9 @@ class CreateCommentsTable extends Migration
             $table->smallIncrements('id');
             $table->mediumInteger('user_id')->unsigned();
             $table->smallInteger('comment_id')->unsigned()->nullable();
+            $table->smallInteger('professor_id')->unsigned()->nullable();
             $table->text('content');
             $table->boolean('anonymous');
-            $table->tinyInteger('likes')->unsigned()->default(0);
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
             $table->dateTime('deleted_at')->nullable();
