@@ -9,6 +9,7 @@
     "ext-json": "*",
     "algolia/algoliasearch-client-php": "2.4.*",
     "bepsvpt/secure-headers": "5.5.*",
+    "ccu-plus/authentication": "master",
     "ccu-plus/course-import": "master",
     "ccu-plus/eloquent-orm": "master",
     "doctrine/dbal": "2.9.*",
@@ -29,6 +30,10 @@
     "mockery/mockery": "1.2.*"
   },
   "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ccu-plus/authentication.git"
+    },
     {
       "type": "vcs",
       "url": "https://github.com/ccu-plus/course-import.git"

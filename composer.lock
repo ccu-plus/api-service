@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b797fadb1da880762858a95f78c4317",
+    "content-hash": "ca69b2c4e2f903f7e497a8a3d323dcb9",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -139,6 +139,70 @@
                 "referrer-policy"
             ],
             "time": "2019-09-06T15:58:57+00:00"
+        },
+        {
+            "name": "ccu-plus/authentication",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccu-plus/authentication.git",
+                "reference": "1ce5cfbd2437423ee811264b02dc364c5a92c46f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccu-plus/authentication/zipball/1ce5cfbd2437423ee811264b02dc364c5a92c46f",
+                "reference": "1ce5cfbd2437423ee811264b02dc364c5a92c46f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "illuminate/support": "^6.2",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CCUPLUS\\Authentication\\AuthenticationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CCUPLUS\\Authentication\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CCUPLUS\\Authentication\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "AGPL"
+            ],
+            "authors": [
+                {
+                    "name": "BePsvPT",
+                    "email": "bepsvpt@protonmail.com"
+                },
+                {
+                    "name": "Lyrisbee",
+                    "email": "xicadfta@gmail.com"
+                }
+            ],
+            "description": "Provide API for core module to authenticate user for National Chung Cheng University students and alumnus.",
+            "keywords": [
+                "ccu-plus"
+            ],
+            "support": {
+                "source": "https://github.com/ccu-plus/authentication/tree/master",
+                "issues": "https://github.com/ccu-plus/authentication/issues"
+            },
+            "time": "2019-10-13T06:35:19+00:00"
         },
         {
             "name": "ccu-plus/course-import",
