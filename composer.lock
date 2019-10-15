@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/authentication.git",
-                "reference": "1ce5cfbd2437423ee811264b02dc364c5a92c46f"
+                "reference": "3ab7b436e1f4fd7b621a579625f9281648ee356d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/authentication/zipball/1ce5cfbd2437423ee811264b02dc364c5a92c46f",
-                "reference": "1ce5cfbd2437423ee811264b02dc364c5a92c46f",
+                "url": "https://api.github.com/repos/ccu-plus/authentication/zipball/3ab7b436e1f4fd7b621a579625f9281648ee356d",
+                "reference": "3ab7b436e1f4fd7b621a579625f9281648ee356d",
                 "shasum": ""
             },
             "require": {
@@ -202,7 +202,7 @@
                 "source": "https://github.com/ccu-plus/authentication/tree/master",
                 "issues": "https://github.com/ccu-plus/authentication/issues"
             },
-            "time": "2019-10-13T06:35:19+00:00"
+            "time": "2019-10-15T11:48:48+00:00"
         },
         {
             "name": "ccu-plus/course-import",
@@ -274,12 +274,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/eloquent-orm.git",
-                "reference": "3e7cdaff3cd0b1140dc3476cacc7f06bf9043c27"
+                "reference": "3bc0b7408c0c16c4677089967de468e512965ca4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/3e7cdaff3cd0b1140dc3476cacc7f06bf9043c27",
-                "reference": "3e7cdaff3cd0b1140dc3476cacc7f06bf9043c27",
+                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/3bc0b7408c0c16c4677089967de468e512965ca4",
+                "reference": "3bc0b7408c0c16c4677089967de468e512965ca4",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +326,7 @@
                 "source": "https://github.com/ccu-plus/eloquent-orm/tree/master",
                 "issues": "https://github.com/ccu-plus/eloquent-orm/issues"
             },
-            "time": "2019-10-12T13:27:05+00:00"
+            "time": "2019-10-15T12:12:46+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
