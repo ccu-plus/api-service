@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use CCUPLUS\EloquentORM\Course;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Thepixeldeveloper\Sitemap\Urlset;
+use Thepixeldeveloper\Sitemap\Url;
+use Thepixeldeveloper\Sitemap\Drivers\XmlWriterDriver;
 
 class BaseController extends Controller
 {
@@ -30,6 +35,32 @@ class BaseController extends Controller
         return response()->json([
             'data' => $captcha->inline(),
             'nonce' => $nonce,
+        ]);
+    }
+
+    /**
+     * Website sitemap.
+     *
+     * @return Response
+     */
+    public function sitemap(): Response
+    {
+        $urls = new Urlset;
+
+        $base = 'https://ccu.plus';
+
+        foreach (['', '/courses', '/sign-in'] as $page) {
+            $urls->add(new Url(sprintf('%s%s', $base, $page)));
+        }
+
+        foreach (Course::all(['code'])->pluck('code')->toArray() as $code) {
+            $urls->add(new Url(sprintf('%s/courses/%s', $base, $code)));
+        }
+
+        $urls->accept($xml = new XmlWriterDriver);
+
+        return response($xml->output(), 200, [
+            'content-type' => 'text/xml; charset=utf-8',
         ]);
     }
 }

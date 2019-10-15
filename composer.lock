@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca69b2c4e2f903f7e497a8a3d323dcb9",
+    "content-hash": "ae65a067c4a54b1cca48b09acdc70aa8",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2701,16 +2701,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/443fe5f1498147e0fbc792142b5dc43e2e8a533f",
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f",
                 "shasum": ""
             },
             "require": {
@@ -2764,7 +2764,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-14T14:18:59+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -4668,6 +4668,57 @@
                 "dump"
             ],
             "time": "2019-10-04T19:48:13+00:00"
+        },
+        {
+            "name": "thepixeldeveloper/sitemap",
+            "version": "5.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ThePixelDeveloper/Sitemap.git",
+                "reference": "a8bca8d8f8dbd478e88c4559c0d3565b28acf600"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ThePixelDeveloper/Sitemap/zipball/a8bca8d8f8dbd478e88c4559c0d3565b28acf600",
+                "reference": "a8bca8d8f8dbd478e88c4559c0d3565b28acf600",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0",
+                "phpstan/phpstan-phpunit": "^0",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Thepixeldeveloper\\Sitemap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathew Davies",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP XML sitemap generation",
+            "keywords": [
+                "Sitemap",
+                "php",
+                "sitemap-builder",
+                "sitemap-generator",
+                "sitemap-php",
+                "sitemap-xml",
+                "xml",
+                "xml-sitemap"
+            ],
+            "time": "2018-06-24T16:00:39+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
