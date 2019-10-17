@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Transformers\FormValidationTransformer;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -51,6 +52,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof ValidationException) {
+            return fractal($e->validator->errors())
+                ->transformWith(new FormValidationTransformer)
+                ->respond(422);
+        }
+
         return parent::render($request, $e);
     }
 }
