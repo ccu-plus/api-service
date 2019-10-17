@@ -5,7 +5,7 @@ namespace App\Transformers;
 use CCUPLUS\EloquentORM\User;
 use League\Fractal\TransformerAbstract;
 
-class SignInTransformer extends TransformerAbstract
+class AuthTransformer extends TransformerAbstract
 {
     /**
      * A Fractal transformer.
@@ -16,15 +16,15 @@ class SignInTransformer extends TransformerAbstract
      */
     public function transform(User $user = null)
     {
-        if (!is_null($user)) {
+        if ($user->exists) {
             $hmac = hash_hmac('md5', $user->token, env('APP_KEY'), true);
 
             $token = sprintf('%s.%s', $user->token, base64_encode($hmac));
         }
 
         return [
-            'signedUp' => !is_null($user),
-            'token' => $token ?? null,
+            'signedUp' => $user->exists,
+            'token' => $token ?? encrypt(['username' => $user->username, 'timestamp' => time()]),
         ];
     }
 }
