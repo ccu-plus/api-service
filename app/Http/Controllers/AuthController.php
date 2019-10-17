@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Validators\SignInValidator;
-use App\Transformers\FormValidationTransformer;
-use App\Transformers\SignInTransformer;
+use App\Http\Validators\SignUpValidator;
+use App\Transformers\AuthTransformer;
 use CCUPLUS\EloquentORM\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
@@ -25,28 +26,18 @@ class AuthController extends Controller
      */
     public function signIn(Request $request): JsonResponse
     {
-        $v = SignInValidator::make($request);
-
-        if ($v->fails()) {
-            return fractal($v->errors(), new FormValidationTransformer)->respond(422);
-        }
-
-        $input = $v->validated();
+        $input = SignInValidator::make($request);
 
         $cookie = app('authentication')->signIn($input['username'], $input['password'], $input['type']);
 
         if (false === $cookie) {
             throw new UnauthorizedHttpException('Incorrect username or password.');
-        } else if ($input['type'] === 'alumni') {
-            $input['username'] = $this->alumniUsername($cookie);
-
-            if (is_null($input['username'])) {
-                throw new BadRequestHttpException;
-            }
+        } else if ($input['type'] === 'alumni' && is_null($input['username'] = $this->username($cookie))) {
+            throw new BadRequestHttpException;
         }
 
-        return fractal(User::query()->where('username', '=', $input['username'])->first())
-            ->transformWith(new SignInTransformer)
+        return fractal(User::query()->firstOrNew(['username' => $input['username']]))
+            ->transformWith(new AuthTransformer)
             ->respond();
     }
 
@@ -57,7 +48,7 @@ class AuthController extends Controller
      *
      * @return string|null
      */
-    protected function alumniUsername(CookieJar $cookie): ?string
+    protected function username(CookieJar $cookie): ?string
     {
         $url = 'https://miswww1.ccu.edu.tw/alumni/alumni/updateContact.php';
 
@@ -72,9 +63,33 @@ class AuthController extends Controller
         return $matches[1];
     }
 
-    public function signUp()
+    /**
+     * 註冊.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function signUp(Request $request): JsonResponse
     {
-        //
+        $input = SignUpValidator::make($request);
+
+        $token = decrypt($input['token']);
+
+        if (abs($token['timestamp'] - time()) > 600) {
+            throw new AccessDeniedHttpException;
+        }
+
+        $user = User::query()->create([
+            'username' => $token['username'],
+            'nickname' => $input['nickname'],
+            'email' => $input['email'],
+            'token' => Str::random(16),
+        ]);
+
+        return fractal($user)
+            ->transformWith(new AuthTransformer)
+            ->respond();
     }
 
     /**
