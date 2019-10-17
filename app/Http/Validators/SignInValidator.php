@@ -5,21 +5,20 @@ namespace App\Http\Validators;
 use App\Http\Validators\Rules\Captcha;
 use App\Http\Validators\Rules\IdentifyCardNumber;
 use App\Http\Validators\Rules\StudentId;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as BaseValidator;
 use Illuminate\Support\Fluent;
 
-class SignInValidator
+final class SignInValidator
 {
     /**
      * 登入表單驗證器.
      *
      * @param Request $request
      *
-     * @return Validator
+     * @return array
      */
-    public static function make(Request $request): Validator
+    public static function make(Request $request): array
     {
         $v = BaseValidator::make($request->all(), [
             'captcha' => ['required', new Captcha],
@@ -35,6 +34,6 @@ class SignInValidator
             return $input->get('type') === 'alumni';
         });
 
-        return $v;
+        return $v->validated();
     }
 }
