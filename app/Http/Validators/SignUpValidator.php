@@ -19,7 +19,7 @@ final class SignUpValidator
     {
         $v = BaseValidator::make($request->all(), [
             'nickname' => 'bail|required|string|between:3,12|unique:users',
-            'email' => 'bail|required|email|max:48|unique:users',
+            'email' => 'bail|required|email:rfc,strict,dns,spoof|max:48|unique:users',
             'token' => ['required', 'string', new Decryptable],
         ]);
 
