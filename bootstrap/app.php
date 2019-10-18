@@ -109,8 +109,6 @@ $app->router->group([
     $router->group(['prefix' => 'api'], function ($router) {
         require __DIR__.'/../routes/web.php';
     });
-
-    $router->get('{url:.*}', 'BaseController@index');
 });
 
 return $app;
