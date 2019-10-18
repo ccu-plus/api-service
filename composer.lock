@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06081d40c34cc560611880a77f0b9db1",
+    "content-hash": "ba6aafa20a57323709949a2eecd26d8d",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/authentication.git",
-                "reference": "9734758204714b0fb562fcee93c3765cf3f1a4bb"
+                "reference": "09ae76cd0b8a656a4f6a059c43aacd50e1ba671b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/authentication/zipball/9734758204714b0fb562fcee93c3765cf3f1a4bb",
-                "reference": "9734758204714b0fb562fcee93c3765cf3f1a4bb",
+                "url": "https://api.github.com/repos/ccu-plus/authentication/zipball/09ae76cd0b8a656a4f6a059c43aacd50e1ba671b",
+                "reference": "09ae76cd0b8a656a4f6a059c43aacd50e1ba671b",
                 "shasum": ""
             },
             "require": {
@@ -202,7 +202,7 @@
                 "source": "https://github.com/ccu-plus/authentication/tree/master",
                 "issues": "https://github.com/ccu-plus/authentication/issues"
             },
-            "time": "2019-10-17T13:24:16+00:00"
+            "time": "2019-10-18T12:40:11+00:00"
         },
         {
             "name": "ccu-plus/course-import",
@@ -210,12 +210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/course-import.git",
-                "reference": "fa4467872942196ebc260743a30111810b92219f"
+                "reference": "60b95d821573a4c6ee3e2b1302b305d5beceaab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/course-import/zipball/fa4467872942196ebc260743a30111810b92219f",
-                "reference": "fa4467872942196ebc260743a30111810b92219f",
+                "url": "https://api.github.com/repos/ccu-plus/course-import/zipball/60b95d821573a4c6ee3e2b1302b305d5beceaab1",
+                "reference": "60b95d821573a4c6ee3e2b1302b305d5beceaab1",
                 "shasum": ""
             },
             "require": {
@@ -225,6 +225,7 @@
                 "illuminate/console": "^6.2",
                 "illuminate/database": "^6.2",
                 "illuminate/support": "^6.2",
+                "overtrue/pinyin": "^4.0",
                 "paquettg/php-html-parser": "^2.1",
                 "php": "^7.2"
             },
@@ -266,7 +267,7 @@
                 "source": "https://github.com/ccu-plus/course-import/tree/master",
                 "issues": "https://github.com/ccu-plus/course-import/issues"
             },
-            "time": "2019-10-11T13:59:33+00:00"
+            "time": "2019-10-18T13:43:31+00:00"
         },
         {
             "name": "ccu-plus/eloquent-orm",
@@ -274,12 +275,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ccu-plus/eloquent-orm.git",
-                "reference": "6221ba05836bce44d58c05fe114cba47cd3edc04"
+                "reference": "f14c0aa0a14f15bfef1f6d25c5eb01ad62714779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/6221ba05836bce44d58c05fe114cba47cd3edc04",
-                "reference": "6221ba05836bce44d58c05fe114cba47cd3edc04",
+                "url": "https://api.github.com/repos/ccu-plus/eloquent-orm/zipball/f14c0aa0a14f15bfef1f6d25c5eb01ad62714779",
+                "reference": "f14c0aa0a14f15bfef1f6d25c5eb01ad62714779",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +327,7 @@
                 "source": "https://github.com/ccu-plus/eloquent-orm/tree/master",
                 "issues": "https://github.com/ccu-plus/eloquent-orm/issues"
             },
-            "time": "2019-10-17T13:11:36+00:00"
+            "time": "2019-10-18T13:35:12+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2923,6 +2924,54 @@
                 "serialize"
             ],
             "time": "2019-09-02T21:07:33+00:00"
+        },
+        {
+            "name": "overtrue/pinyin",
+            "version": "4.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/pinyin.git",
+                "reference": "94fdb3ea6eca5677afd9548111d95bedcd5a4086"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/94fdb3ea6eca5677afd9548111d95bedcd5a4086",
+                "reference": "94fdb3ea6eca5677afd9548111d95bedcd5a4086",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\Pinyin\\": "src/"
+                },
+                "files": [
+                    "src/const.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos",
+                    "homepage": "http://github.com/overtrue"
+                }
+            ],
+            "description": "Chinese to pinyin translator.",
+            "homepage": "https://github.com/overtrue/pinyin",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "cn2pinyin"
+            ],
+            "time": "2019-09-20T12:43:45+00:00"
         },
         {
             "name": "paquettg/php-html-parser",
