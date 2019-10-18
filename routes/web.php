@@ -6,7 +6,7 @@ use Laravel\Lumen\Routing\Router;
 
 $router->group(['prefix' => 'courses'], function (Router $router) {
     $router->get('search', 'CourseController@search');
-    $router->get('waterfall', 'CourseController@waterfall');
+    $router->get('comments', 'CommentController@latest');
     $router->get('{code}', 'CourseController@show');
 
     $router->group(['prefix' => '{code}/comments'], function (Router $router) {

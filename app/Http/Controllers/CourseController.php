@@ -54,11 +54,6 @@ class CourseController extends Controller
             ->respond();
     }
 
-    public function waterfall()
-    {
-        //
-    }
-
     /**
      * 取得課程資訊.
      *
