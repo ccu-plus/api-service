@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
+use Overtrue\Pinyin\Pinyin;
 
 class ImportDepartmentsDimensionsProfessorsSemestersData extends Migration
 {
@@ -377,13 +378,17 @@ class ImportDepartmentsDimensionsProfessorsSemestersData extends Migration
             ],
         ];
 
+        $pinyin = new Pinyin;
+
+        foreach ($data['professors'] as &$professor) {
+            $professor['name_pinyin'] = $professor['name'] === '教師未定' ? null : implode(' ', $pinyin->name($professor['name']));
+        }
+
         foreach ($data as $table => $items) {
             foreach (array_chunk($items, 100) as $chunks) {
                 DB::table($table)->insert($chunks);
             }
         };
-
-
     }
 
     /**

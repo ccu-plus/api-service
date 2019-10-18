@@ -15,14 +15,18 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->mediumInteger('user_id')->unsigned();
+            $table->smallInteger('user_id')->unsigned();
+            $table->smallInteger('course_id')->unsigned()->nullable();
             $table->smallInteger('comment_id')->unsigned()->nullable();
             $table->smallInteger('professor_id')->unsigned()->nullable();
             $table->text('content');
             $table->boolean('anonymous');
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->index();
             $table->dateTime('updated_at');
             $table->dateTime('deleted_at')->nullable();
+
+            $table->index(['course_id', 'created_at']);
+            $table->index(['comment_id', 'created_at']);
         });
     }
 

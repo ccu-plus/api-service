@@ -15,7 +15,7 @@ class CreateDimensionsTable extends Migration
     {
         Schema::create('dimensions', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('name', 16)->unique();
+            $table->string('name', 32)->unique();
         });
     }
 

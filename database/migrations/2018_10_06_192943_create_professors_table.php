@@ -15,7 +15,8 @@ class CreateProfessorsTable extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('name', 8)->unique();
+            $table->string('name', 16)->unique();
+            $table->string('name_pinyin')->nullable();
         });
     }
 

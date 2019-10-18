@@ -15,8 +15,8 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('college', 8);
-            $table->string('name', 32);
+            $table->string('college', 16);
+            $table->string('name', 64);
             $table->char('code', 4)->charset('latin1')->collation('latin1_general_ci')->unique();
 
             $table->unique(['college', 'name']);

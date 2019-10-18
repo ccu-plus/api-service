@@ -14,7 +14,7 @@ class CreateCourseSemesterTable extends Migration
     public function up()
     {
         Schema::create('course_semester', function (Blueprint $table) {
-            $table->mediumInteger('course_id')->unsigned();
+            $table->smallInteger('course_id')->unsigned();
             $table->tinyInteger('semester_id')->unsigned();
 
             $table->primary(['course_id', 'semester_id']);
