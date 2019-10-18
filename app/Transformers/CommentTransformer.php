@@ -23,6 +23,11 @@ class CommentTransformer extends TransformerAbstract
             'commented_at' => $comment->created_at->toDateTimeString(),
             'deleted' => $comment->trashed(),
             'comments' => $comment->trashed() ? [] : fractal()->collection($comment->comments)->transformWith(new CommentTransformer)->toArray()['data'],
+            'course' => !$comment->relationLoaded('course') ? null : [
+                'code' => $comment->course->code,
+                'name' => $comment->course->name,
+                'department' => $comment->course->department->name,
+            ],
         ];
     }
 }
