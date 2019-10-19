@@ -9,7 +9,7 @@ use League\Fractal\TransformerAbstract;
 class FormValidationTransformer extends TransformerAbstract
 {
     /**
-     * A Fractal transformer.
+     * Form validation transformer.
      *
      * @param MessageBag $bag
      *

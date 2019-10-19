@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 class AuthTransformer extends TransformerAbstract
 {
     /**
-     * A Fractal transformer.
+     * Auth transformer.
      *
      * @param User|null $user
      *
