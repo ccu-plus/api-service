@@ -86,7 +86,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\ScoutServiceProvider::class);
 $app->register(Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class);
-$app->register(CCUPLUS\Authentication\AuthenticationServiceProvider::class);
+$app->register(CCUPLUS\Authentication\ServiceProvider::class);
 $app->register(CCUPLUS\CourseImport\ServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
