@@ -106,9 +106,7 @@ $app->register(Spatie\Fractal\FractalServiceProvider::class);
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function (Laravel\Lumen\Routing\Router $router) {
-    $router->group(['prefix' => 'api'], function ($router) {
-        require __DIR__.'/../routes/web.php';
-    });
+    require __DIR__.'/../routes/web.php';
 });
 
 return $app;
