@@ -62,7 +62,6 @@ class ImportCommentsData extends Migration
      */
     public function down()
     {
-        DB::table('course_comment')->truncate();
         DB::table('comments')->truncate();
     }
 }
