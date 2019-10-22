@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Validators\CommentValidator;
 use App\Transformers\CommentTransformer;
+use Carbon\Carbon;
 use CCUPLUS\EloquentORM\Comment;
 use CCUPLUS\EloquentORM\Course;
 use CCUPLUS\EloquentORM\Professor;
@@ -48,11 +49,13 @@ class CommentController extends Controller
      */
     public function latest(): JsonResponse
     {
-        $comments = Comment::with('course', 'course.department', 'user', 'professor')
-            ->whereNull('comment_id')
-            ->take(8)
-            ->latest('created_at')
-            ->get();
+        $comments = Cache::remember('latest-comments', Carbon::now()->addMonth(), function () {
+            return Comment::with('course', 'course.department', 'user', 'professor')
+                ->whereNull('comment_id')
+                ->take(8)
+                ->latest('created_at')
+                ->get();
+        });
 
         return fractal()
             ->collection($comments)
@@ -92,6 +95,8 @@ class CommentController extends Controller
             'content' => $input['content'],
             'anonymous' => $input['anonymous'],
         ]);
+
+        Cache::forget('latest-comments');
 
         return fractal($comment->fresh('user', 'professor'))
             ->transformWith(new CommentTransformer)

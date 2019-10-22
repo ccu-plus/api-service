@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transformers\CourseTransformer;
+use Carbon\Carbon;
 use CCUPLUS\EloquentORM\Course;
 use CCUPLUS\EloquentORM\Semester;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,7 +39,7 @@ class CourseController extends Controller
 
         $key = sprintf('search-%s', base64_encode($keyword));
 
-        $courses = Cache::remember($key, 60 * 60, function () use ($keyword) {
+        $courses = Cache::remember($key, Carbon::now()->addDay(), function () use ($keyword) {
             return Course::search($keyword)
                 ->take(300)
                 ->get()
@@ -63,9 +64,13 @@ class CourseController extends Controller
      */
     public function show(string $code): JsonResponse
     {
-        $course = Course::with('department', 'dimension', 'semesters', 'professors')
-            ->where('code', '=', $code)
-            ->firstOrFail();
+        $key = sprintf('course-info-%s', $code);
+
+        $course = Cache::remember($key, Carbon::now()->addMonth(), function () use ($code) {
+            return Course::with('department', 'dimension', 'semesters', 'professors')
+                ->where('code', '=', $code)
+                ->firstOrFail();
+        });
 
         return fractal($course)
             ->transformWith(new CourseTransformer)
