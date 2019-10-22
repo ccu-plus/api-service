@@ -2,7 +2,7 @@
   "name": "ccu-plus/api-service",
   "description": "CCU PLUS API Service.",
   "keywords": ["ccu-plus"],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "AGPL-3.0-only",
   "type": "project",
   "require": {
