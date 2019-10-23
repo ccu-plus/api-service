@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use CCUPLUS\EloquentORM\Course;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Thepixeldeveloper\Sitemap\Urlset;
@@ -32,6 +34,42 @@ class BaseController extends Controller
             'data' => $captcha->inline(),
             'nonce' => $nonce,
         ]);
+    }
+
+    /**
+     * Matomo analytics.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function push(Request $request): JsonResponse
+    {
+        $response = response()->json([], 204);
+
+        if (!in_array($action = $request->input('type'), ['pageview', 'search'])) {
+            return $response;
+        }
+
+        (new Client)->post('https://matomo.ccu.plus/piwik.php', [
+            'http_errors' => false,
+            'form_params' => [
+                'idsite' => 1,
+                'rec' => 1,
+                'action_name' => $action,
+                'url' => $request->input('url'),
+                '_id' => $request->input('uid'),
+                'apiv' => 1,
+                'ua' => $request->input('agent'),
+                'uid' => optional($request->user())->getKey(),
+                'cip' => $request->ip(),
+                'token_auth' => env('MATOMO_SECRET'),
+                'search' => $action === 'search' ? $request->input('search') : null,
+                'search_count' => $action === 'search' ? $request->input('count') : null,
+            ],
+        ]);
+
+        return $response;
     }
 
     /**

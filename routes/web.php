@@ -38,4 +38,6 @@ $router->group(['prefix' => 'auth'], function (Router $router) {
 
 $router->get('captcha', 'BaseController@captcha');
 
+$router->post('push', 'BaseController@push');
+
 $router->get('sitemap.xml', 'BaseController@sitemap');
