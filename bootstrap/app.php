@@ -59,7 +59,7 @@ $app->singleton(
 
 if ($app->environment('local')) {
     $app->middleware([
-        Barryvdh\Cors\HandleCors::class,
+        Fruitcake\Cors\HandleCors::class,
     ]);
 }
 
@@ -79,7 +79,7 @@ $app->routeMiddleware([
 */
 
 if ($app->environment('local')) {
-    $app->register(Barryvdh\Cors\ServiceProvider::class);
+    $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 }
 
 $app->register(App\Providers\AppServiceProvider::class);
