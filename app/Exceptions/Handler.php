@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Transformers\FormValidationTransformer;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -48,7 +49,7 @@ class Handler extends ExceptionHandler
      * @param Request $request
      * @param Exception $e
      *
-     * @return Response
+     * @return Response|JsonResponse
      */
     public function render($request, Exception $e)
     {
