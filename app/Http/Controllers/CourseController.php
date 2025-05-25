@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Overtrue\Pinyin\Pinyin;
 
 class CourseController extends Controller
 {
@@ -33,7 +32,7 @@ class CourseController extends Controller
 
         if (!empty($input = $request->input('keyword'))) {
             $keyword = empty($keyword)
-                ? (new Pinyin)->phrase($input, ' ', PINYIN_NO_TONE)
+                ? to_ascii($input)
                 : sprintf('%s %s', $keyword, $input);
         }
 

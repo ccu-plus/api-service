@@ -13,7 +13,6 @@ use App\Models\Semester;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Overtrue\Pinyin\Pinyin;
 
 class Import extends Command
 {
@@ -75,8 +74,6 @@ class Import extends Command
 
         $professors = $this->professors($data);
 
-        $pinyin = new Pinyin;
-
         foreach ($data as $datum) {
             foreach ($datum['courses'] as $info) {
                 if ($this->option('dry-run')) {
@@ -90,7 +87,7 @@ class Import extends Command
                 $course = Course::query()->firstOrCreate(['code' => $info['code']], [
                     'name' => $info['name']['cht'],
                     'name_en' => $info['name']['eng'],
-                    'name_pinyin' => $pinyin->phrase($info['name']['cht'], ' ', PINYIN_NO_TONE),
+                    'name_pinyin' => to_ascii($info['name']['cht']),
                     'credit' => $info['credit'],
                     'department_id' => $departments[$datum['code']],
                     'dimension_id' => $dimensions[$info['dimension'] ?? null] ?? null,

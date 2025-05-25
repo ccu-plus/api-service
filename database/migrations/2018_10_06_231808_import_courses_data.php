@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
-use Overtrue\Pinyin\Pinyin;
 
 class ImportCoursesData extends Migration
 {
@@ -28,14 +27,12 @@ class ImportCoursesData extends Migration
 
         $courses = json_decode(file_get_contents(storage_path('legacy/courses.json')), true);
 
-        $pinyin = new Pinyin;
-
         foreach ($courses as $course) {
             // 課程資料
             $courseId = DB::table('courses')->insertGetId([
                 'code' => $course['code'],
                 'name' => $course['name'],
-                'name_pinyin' => $pinyin->phrase($course['name'], ' ', PINYIN_NO_TONE),
+                'name_pinyin' => to_ascii($course['name']),
                 'credit' => Arr::first(Arr::first($course['professors']))['credit'],
                 'department_id' => $departments[$course['department']],
                 'dimension_id' => $dimensions[$course['dimension']] ?? null,
