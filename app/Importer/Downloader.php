@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Importer;
 
 use GuzzleHttp\Client;
@@ -19,9 +21,7 @@ class Downloader
     /**
      * 下載課程資料壓縮檔.
      *
-     * @param string $semester
      *
-     * @return string
      *
      * @throws BadResponseException
      * @throws RequestException
@@ -49,8 +49,6 @@ class Downloader
 
     /**
      * 創建暫存檔並取得檔案位址.
-     *
-     * @return string
      */
     protected function tempfile(): string
     {

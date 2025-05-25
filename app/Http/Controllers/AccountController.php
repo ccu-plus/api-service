@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Transformers\ProfileTransformer;
@@ -11,9 +13,7 @@ class AccountController extends Controller
     /**
      * Account profile.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function profile(Request $request): JsonResponse
     {

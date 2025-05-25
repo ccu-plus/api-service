@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -8,12 +10,10 @@ class CreateCourseSemesterTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('course_semester', function (Blueprint $table) {
+        Schema::create('course_semester', function (Blueprint $table): void {
             $table->smallInteger('course_id')->unsigned();
             $table->tinyInteger('semester_id')->unsigned();
 
@@ -23,10 +23,8 @@ class CreateCourseSemesterTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('course_semester');
     }

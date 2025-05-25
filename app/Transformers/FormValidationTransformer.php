@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use Illuminate\Support\Arr;
@@ -11,11 +13,8 @@ class FormValidationTransformer extends TransformerAbstract
     /**
      * Form validation transformer.
      *
-     * @param MessageBag $bag
-     *
-     * @return array
      */
-    public function transform(MessageBag $bag)
+    public function transform(MessageBag $bag): array
     {
         return array_map(function ($msg) {
             return Arr::first($msg);

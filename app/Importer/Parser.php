@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Importer;
 
 use Illuminate\Support\Str;
@@ -24,9 +26,7 @@ class Parser
     /**
      * 取得系所開課資料.
      *
-     * @param string $path
      *
-     * @return array
      *
      * @throws ChildNotFoundException
      * @throws CircularException
@@ -45,7 +45,7 @@ class Parser
 
         $rows = $dom->find('tr')->toArray();
 
-        $this->headers = array_map(function (HtmlNode $node) {
+        $this->headers = array_map(function (HtmlNode $node): string {
             return trim($node->firstChild()->text());
         }, array_shift($rows)->find('th')->toArray());
 
@@ -53,7 +53,7 @@ class Parser
             'code' => $code = basename($path, '.html'),
             'college' => $this->college($code),
             'name' => Str::after($dom->find('title', 0)->text(), '--'),
-            'courses' => array_map(function (HtmlNode $row) {
+            'courses' => array_map(function (HtmlNode $row): array {
                 return $this->rowToArray($row->find('td'));
             }, $rows),
         ];
@@ -62,9 +62,7 @@ class Parser
     /**
      * 取得系所學院.
      *
-     * @param string $code
      *
-     * @return string
      */
     protected function college(string $code): string
     {
@@ -85,8 +83,6 @@ class Parser
      * 將課程資料轉為 key => value 形式.
      *
      * @param Collection $columns
-     *
-     * @return array
      */
     protected function rowToArray(Collection $columns): array
     {
@@ -107,8 +103,6 @@ class Parser
 
     /**
      * 取得各欄位名稱.
-     *
-     * @return array
      */
     protected function keys(): array
     {
@@ -125,12 +119,12 @@ class Parser
 
         foreach ($map as $key => $value) {
             if (in_array($key, $this->headers, true)) {
-                array_splice($keys, array_search($value['needle'], $keys) + 1, 0, $value['replacement']);
+                array_splice($keys, array_search($value['needle'], $keys, true) + 1, 0, $value['replacement']);
             }
         }
 
         if (!in_array('課程大綱', $this->headers, true)) {
-            array_splice($keys, array_search('outline', $keys), 1);
+            array_splice($keys, array_search('outline', $keys, true), 1);
         }
 
         return $keys;
@@ -140,8 +134,6 @@ class Parser
      * 取得課程中文及英文名稱.
      *
      * @param HtmlNode $node
-     *
-     * @return array
      */
     private function parseName(HtmlNode $node): array
     {
@@ -160,8 +152,6 @@ class Parser
      * 取得課程授課教授.
      *
      * @param HtmlNode $node
-     *
-     * @return array
      */
     private function parseProfessor(HtmlNode $node): array
     {
@@ -178,8 +168,6 @@ class Parser
      * 取得課程上課時數.
      *
      * @param HtmlNode $node
-     *
-     * @return array
      */
     private function parseHours(HtmlNode $node): array
     {
@@ -196,8 +184,6 @@ class Parser
      * 取得課程上課時間.
      *
      * @param HtmlNode $node
-     *
-     * @return array
      */
     private function parseTime(HtmlNode $node): array
     {
@@ -213,9 +199,7 @@ class Parser
     /**
      * 以星期切割課程授課時間.
      *
-     * @param string $time
      *
-     * @return array
      */
     private function splitTimeByDay(string $time): array
     {
@@ -233,7 +217,7 @@ class Parser
             }
         }
 
-        return array_map(function ($chars) {
+        return array_map(function ($chars): string {
             return trim(implode('', $chars));
         }, $result ?? []);
     }
@@ -243,7 +227,6 @@ class Parser
      *
      * @param HtmlNode $node
      *
-     * @return string
      *
      * @throws ChildNotFoundException
      */

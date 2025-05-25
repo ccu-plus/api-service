@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands\Course;
 
 use App\Importer\Importer;
@@ -38,8 +40,6 @@ class Import extends Command
 
     /**
      * Import constructor.
-     *
-     * @param Importer $importer
      */
     public function __construct(Importer $importer)
     {
@@ -60,10 +60,8 @@ class Import extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         if (is_null($semester = $this->semester())) {
             return;
@@ -119,8 +117,6 @@ class Import extends Command
 
     /**
      * 取得學期 Eloquent Model.
-     *
-     * @return Semester|null
      */
     protected function semester(): ?Semester
     {
@@ -146,9 +142,7 @@ class Import extends Command
     /**
      * 確保系所存在，並取得所有系所資料.
      *
-     * @param array $departments
      *
-     * @return array
      */
     protected function departments(array $departments): array
     {
@@ -174,9 +168,7 @@ class Import extends Command
     /**
      * 確保教授存在，並取得所有教授資料.
      *
-     * @param array $departments
      *
-     * @return array
      */
     protected function professors(array $departments): array
     {
@@ -187,7 +179,7 @@ class Import extends Command
             ->flatten()
             ->unique()
             ->values()
-            ->map(function (string $name) {
+            ->map(function (string $name): string {
                 $map = [
                     '李?玲' => '李䊵玲', // BIG-5 無「䊵」此字
                 ];
@@ -196,8 +188,8 @@ class Import extends Command
             })
             ->diff(Professor::all()->pluck('name')->toArray())
             ->chunk(50)
-            ->each(function (Collection $names) {
-                Professor::query()->insert(array_map(function (string $name) {
+            ->each(function (Collection $names): void {
+                Professor::query()->insert(array_map(function (string $name): array {
                     return ['name' => $name];
                 }, $names->values()->toArray()));
             });

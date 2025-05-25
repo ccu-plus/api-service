@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\EntryPoints;
 
 use App\Authentication\Validators\StudentId;
@@ -12,8 +14,6 @@ class Grade extends EntryPoint
 {
     /**
      * 學號格式驗證.
-     *
-     * @return Validator
      */
     protected function validator(): Validator
     {
@@ -22,8 +22,6 @@ class Grade extends EntryPoint
 
     /**
      * 登入網址.
-     *
-     * @return string
      */
     protected function signInUrl(): string
     {
@@ -33,8 +31,6 @@ class Grade extends EntryPoint
     /**
      * 登入表單.
      *
-     * @param string $username
-     * @param string $password
      *
      * @return array<string>
      */
@@ -49,9 +45,7 @@ class Grade extends EntryPoint
     /**
      * 檢查是否登入成功.
      *
-     * @param ResponseInterface $response
      *
-     * @return bool
      */
     protected function signedIn(ResponseInterface $response): bool
     {
@@ -68,8 +62,6 @@ class Grade extends EntryPoint
      * 登入完後處理.
      *
      * @param CookieJarInterface<CookieJar> $cookie
-     *
-     * @return bool
      */
     protected function postSignedIn(CookieJarInterface $cookie): bool
     {
@@ -78,8 +70,6 @@ class Grade extends EntryPoint
 
     /**
      * 登出網址.
-     *
-     * @return string
      */
     protected function signOutUrl(): string
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -20,7 +22,9 @@ final class Captcha implements Rule
     {
         if (!is_string($value)) {
             return false;
-        } else if (preg_match('/[0-9a-f]{32}\.\d{5}/', $value) !== 1) {
+        }
+
+        if (preg_match('/[0-9a-f]{32}\.\d{5}/', $value) !== 1) {
             return false;
         }
 

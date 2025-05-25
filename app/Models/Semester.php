@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Support\Str;
@@ -20,8 +22,6 @@ final class Semester extends Model
 
     /**
      * 取得學期數字型態之值.
-     *
-     * @return string|null
      */
     public function getValueAttribute(): ?string
     {
@@ -38,12 +38,10 @@ final class Semester extends Model
 
     /**
      * 取得最新學期 Eloquent Model.
-     *
-     * @return Semester
      */
     public static function newest(): Semester
     {
-        $cmp = function (Semester $a, Semester $b) {
+        $cmp = function (Semester $a, Semester $b): int {
             $spaceship = intval($a->name) <=> intval($b->name);
 
             if ($spaceship !== 0) {

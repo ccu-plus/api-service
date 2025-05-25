@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Validators\CommentValidator;
@@ -18,9 +20,7 @@ class CommentController extends Controller
     /**
      * 取得課程評論.
      *
-     * @param string $code
      *
-     * @return JsonResponse
      */
     public function index(string $code): JsonResponse
     {
@@ -44,8 +44,6 @@ class CommentController extends Controller
 
     /**
      * 最新幾則評論.
-     *
-     * @return JsonResponse
      */
     public function latest(): JsonResponse
     {
@@ -66,10 +64,7 @@ class CommentController extends Controller
     /**
      * 新增評論.
      *
-     * @param Request $request
-     * @param string $code
      *
-     * @return JsonResponse
      */
     public function store(Request $request, string $code): JsonResponse
     {

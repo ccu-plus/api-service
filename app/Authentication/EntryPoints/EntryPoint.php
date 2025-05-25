@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\EntryPoints;
 
 use App\Authentication\Validators\Validator;
@@ -21,8 +23,6 @@ abstract class EntryPoint
 
     /**
      * Constructor.
-     *
-     * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client)
     {
@@ -32,8 +32,6 @@ abstract class EntryPoint
     /**
      * 登入服務.
      *
-     * @param string $username
-     * @param string $password
      *
      * @return CookieJarInterface<CookieJar>|false
      *
@@ -65,7 +63,6 @@ abstract class EntryPoint
      *
      * @param CookieJarInterface<CookieJar> $cookie
      *
-     * @return bool
      *
      * @throws GuzzleException
      */
@@ -77,7 +74,7 @@ abstract class EntryPoint
                 'cookies' => $cookie,
                 'timeout' => 2,
             ]);
-        } catch (TransferException $e) {
+        } catch (TransferException $transferException) {
             return false;
         }
 
@@ -86,23 +83,17 @@ abstract class EntryPoint
 
     /**
      * 帳號格式驗證.
-     *
-     * @return Validator
      */
     abstract protected function validator(): Validator;
 
     /**
      * 登入網址.
-     *
-     * @return string
      */
     abstract protected function signInUrl(): string;
 
     /**
      * 登入表單.
      *
-     * @param string $username
-     * @param string $password
      *
      * @return array<string>
      */
@@ -111,9 +102,7 @@ abstract class EntryPoint
     /**
      * 檢查是否登入成功.
      *
-     * @param ResponseInterface $response
      *
-     * @return bool
      */
     abstract protected function signedIn(ResponseInterface $response): bool;
 
@@ -121,15 +110,11 @@ abstract class EntryPoint
      * 登入完後處理.
      *
      * @param CookieJarInterface<CookieJar> $cookie
-     *
-     * @return bool
      */
     abstract protected function postSignedIn(CookieJarInterface $cookie): bool;
 
     /**
      * 登出網址.
-     *
-     * @return string
      */
     abstract protected function signOutUrl(): string;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators;
 
 use App\Http\Validators\Rules\Decryptable;
@@ -11,9 +13,7 @@ final class SignUpValidator
     /**
      * 註冊表單驗證器.
      *
-     * @param Request $request
      *
-     * @return array
      */
     public static function make(Request $request): array
     {

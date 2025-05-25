@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
@@ -9,10 +11,8 @@ class ImportCoursesData extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         /**
          * @var array $departments
@@ -21,7 +21,7 @@ class ImportCoursesData extends Migration
          * @var array $professors
          */
         foreach (['departments', 'dimensions', 'semesters', 'professors'] as $variable) {
-            $$variable = collect(DB::table($variable)->get(['id', 'name']))
+            ${$variable} = collect(DB::table($variable)->get(['id', 'name']))
                 ->pluck('id', 'name')
                 ->toArray();
         }
@@ -76,10 +76,8 @@ class ImportCoursesData extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         $tables = ['courses', 'course_professor', 'course_semester'];
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -8,12 +10,10 @@ class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table): void {
             $table->tinyIncrements('id');
             $table->string('college', 16);
             $table->string('name', 64);
@@ -25,10 +25,8 @@ class CreateDepartmentsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('departments');
     }

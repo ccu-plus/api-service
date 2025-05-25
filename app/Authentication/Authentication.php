@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication;
 
 use GuzzleHttp\Client;
@@ -27,9 +29,6 @@ class Authentication
     /**
      * 驗證用戶登入.
      *
-     * @param string $username
-     * @param string $password
-     * @param string $target
      *
      * @return CookieJarInterface<CookieJar>|false
      */
@@ -63,9 +62,7 @@ class Authentication
     /**
      * 設置 target cookie.
      *
-     * @param string $target
      *
-     * @return SetCookie
      */
     protected function targetCookie(string $target): SetCookie
     {
@@ -80,8 +77,6 @@ class Authentication
      * 登出用戶.
      *
      * @param CookieJar<CookieJar> $jar
-     *
-     * @return bool
      */
     public function signOut(CookieJar $jar): bool
     {

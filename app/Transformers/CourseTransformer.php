@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use App\Models\Course;
@@ -11,9 +13,7 @@ class CourseTransformer extends TransformerAbstract
     /**
      * Course transformer.
      *
-     * @param Course $course
      *
-     * @return array
      */
     public function transform(Course $course): array
     {
@@ -33,13 +33,11 @@ class CourseTransformer extends TransformerAbstract
     /**
      * 課程各學期資料.
      *
-     * @param Course $course
      *
-     * @return Collection
      */
     protected function semesters(Course $course): Collection
     {
-        return $course->semesters->reverse()->values()->map(function ($semester) use ($course) {
+        return $course->semesters->reverse()->values()->map(function ($semester) use ($course): array {
             $professors = $course->professors->where('pivot.semester_id', $semester->id);
 
             return [

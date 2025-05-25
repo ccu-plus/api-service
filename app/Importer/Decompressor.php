@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Importer;
 
 use PharData;
@@ -11,9 +13,7 @@ class Decompressor
     /**
      * 解壓縮壓縮檔.
      *
-     * @param string $path
      *
-     * @return string
      *
      * @throws RuntimeException
      * @throws UnexpectedValueException
@@ -35,8 +35,6 @@ class Decompressor
 
     /**
      * 創建暫存資料夾並取得資料夾位址.
-     *
-     * @return string
      */
     protected function tempdir(): string
     {
@@ -46,9 +44,13 @@ class Decompressor
 
         if (false === $path) {
             throw $exception;
-        } else if (!unlink($path)) {
+        }
+
+        if (!unlink($path)) {
             throw $exception;
-        } else if (!mkdir($path)) {
+        }
+
+        if (!mkdir($path)) {
             throw $exception;
         };
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators;
 
 use App\Http\Validators\Rules\Captcha;
@@ -14,9 +16,7 @@ final class SignInValidator
     /**
      * 登入表單驗證器.
      *
-     * @param Request $request
      *
-     * @return array
      */
     public static function make(Request $request): array
     {
@@ -26,11 +26,11 @@ final class SignInValidator
             'type' => 'required|in:alumni,portal',
         ]);
 
-        $v->sometimes('username', ['required', new StudentId], function (Fluent $input) {
+        $v->sometimes('username', ['required', new StudentId], function (Fluent $input): bool {
             return $input->get('type') === 'portal';
         });
 
-        $v->sometimes('username', ['required', new IdentifyCardNumber], function (Fluent $input) {
+        $v->sometimes('username', ['required', new IdentifyCardNumber], function (Fluent $input): bool {
             return $input->get('type') === 'alumni';
         });
 

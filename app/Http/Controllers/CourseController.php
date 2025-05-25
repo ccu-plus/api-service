@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Transformers\CourseTransformer;
@@ -17,9 +19,7 @@ class CourseController extends Controller
     /**
      * 搜尋課程.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function search(Request $request): JsonResponse
     {
@@ -44,7 +44,7 @@ class CourseController extends Controller
                 ->take(300)
                 ->get()
                 ->load('department', 'dimension', 'professors')
-                ->loadCount(['semesters', 'semesters as newest_semesters_count' => function (Builder $query) {
+                ->loadCount(['semesters', 'semesters as newest_semesters_count' => function (Builder $query): void {
                     $query->where('semesters.id', '=', Semester::newest()->getKey());
                 }]);
         });
@@ -58,9 +58,7 @@ class CourseController extends Controller
     /**
      * 取得課程資訊.
      *
-     * @param string $code
      *
-     * @return JsonResponse
      */
     public function show(string $code): JsonResponse
     {

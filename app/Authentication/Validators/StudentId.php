@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\Validators;
 
 class StudentId extends Validator
@@ -90,17 +92,19 @@ class StudentId extends Validator
     /**
      * 檢查學號是否有效.
      *
-     * @param string $sid
      *
-     * @return bool
      */
     public function valid(string $sid): bool
     {
         if (1 !== preg_match($this->pattern, $sid)) {
             return false;
-        } elseif (!$this->isEnrollment($sid)) {
+        }
+
+        if (!$this->isEnrollment($sid)) {
             return false;
-        } elseif (!in_array(substr($sid, 3, 3), $this->departments, true)) {
+        }
+
+        if (!in_array(substr($sid, 3, 3), $this->departments, true)) {
             return false;
         }
 
@@ -110,9 +114,7 @@ class StudentId extends Validator
     /**
      * 是否在學.
      *
-     * @param string $sid
      *
-     * @return bool
      */
     protected function isEnrollment(string $sid): bool
     {
@@ -133,9 +135,7 @@ class StudentId extends Validator
     /**
      * 入學學年.
      *
-     * @param string $sid
      *
-     * @return int
      */
     protected function startYear(string $sid): int
     {
@@ -150,8 +150,6 @@ class StudentId extends Validator
 
     /**
      * 目前學年.
-     *
-     * @return int
      */
     protected function currentYear(): int
     {

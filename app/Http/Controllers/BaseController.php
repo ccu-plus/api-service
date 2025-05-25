@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Course;
@@ -18,7 +20,6 @@ class BaseController extends Controller
     /**
      * 取得驗證碼.
      *
-     * @return JsonResponse
      *
      * @throws Exception
      */
@@ -39,9 +40,7 @@ class BaseController extends Controller
     /**
      * Matomo analytics.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function push(Request $request): JsonResponse
     {
@@ -74,8 +73,6 @@ class BaseController extends Controller
 
     /**
      * Website sitemap.
-     *
-     * @return Response
      */
     public function sitemap(): Response
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Authentication\Authentication;
@@ -11,18 +13,14 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Boot the authentication services for the application.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->redis();
     }
 
     /**
      * Setup redis driver.
-     *
-     * @return void
      */
     protected function redis(): void
     {
@@ -35,26 +33,22 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->captcha();
 
-        $this->app->singleton('authentication', function () {
+        $this->app->singleton('authentication', function (): \App\Authentication\Authentication {
             return new Authentication;
         });
     }
 
     /**
      * Register captcha service.
-     *
-     * @return void
      */
     protected function captcha(): void
     {
-        $this->app->singleton('captcha', function () {
+        $this->app->singleton('captcha', function (): \Gregwar\Captcha\CaptchaBuilder {
             $phrase = new PhraseBuilder(5, '0123456789');
 
             $captcha = new CaptchaBuilder(null, $phrase);

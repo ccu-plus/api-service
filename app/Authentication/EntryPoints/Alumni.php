@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\EntryPoints;
 
 use App\Authentication\Validators\IdentityCardNumber;
@@ -13,8 +15,6 @@ class Alumni extends EntryPoint
 {
     /**
      * 身分證格式驗證.
-     *
-     * @return Validator
      */
     protected function validator(): Validator
     {
@@ -23,8 +23,6 @@ class Alumni extends EntryPoint
 
     /**
      * 登入網址.
-     *
-     * @return string
      */
     protected function signInUrl(): string
     {
@@ -34,8 +32,6 @@ class Alumni extends EntryPoint
     /**
      * 登入表單.
      *
-     * @param string $username
-     * @param string $password
      *
      * @return array<string>
      */
@@ -50,9 +46,7 @@ class Alumni extends EntryPoint
     /**
      * 檢查是否登入成功.
      *
-     * @param ResponseInterface $response
      *
-     * @return bool
      */
     protected function signedIn(ResponseInterface $response): bool
     {
@@ -69,8 +63,6 @@ class Alumni extends EntryPoint
      * 登入完後處理.
      *
      * @param CookieJarInterface<CookieJar> $cookie
-     *
-     * @return bool
      */
     protected function postSignedIn(CookieJarInterface $cookie): bool
     {
@@ -83,7 +75,7 @@ class Alumni extends EntryPoint
                 'cookies' => $cookie,
                 'timeout' => 3,
             ]);
-        } catch (GuzzleException $e) {
+        } catch (GuzzleException $guzzleException) {
             return false;
         }
 
@@ -92,8 +84,6 @@ class Alumni extends EntryPoint
 
     /**
      * 登出網址.
-     *
-     * @return string
      */
     protected function signOutUrl(): string
     {

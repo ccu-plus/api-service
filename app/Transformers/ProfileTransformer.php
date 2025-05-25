@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use App\Models\User;
@@ -10,9 +12,7 @@ class ProfileTransformer extends TransformerAbstract
     /**
      * Profile transformer.
      *
-     * @param User $user
      *
-     * @return array
      */
     public function transform(User $user): array
     {

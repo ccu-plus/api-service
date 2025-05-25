@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -11,14 +13,14 @@ final class StudentId implements Rule
      *
      * @var string
      */
-    protected $pattern = '/^[468][0-9]{8}$/';
+    private $pattern = '/^[468][0-9]{8}$/';
 
     /**
      * 科系與學號中間三碼對應表.
      *
      * @var array
      */
-    protected $departments = [
+    private $departments = [
         '110', // 中國文學系、中國文學研究所
         '115', // 外國語文學系、外國語文研究所
         '120', // 歷史學系、歷史研究所
@@ -93,9 +95,13 @@ final class StudentId implements Rule
     {
         if (!is_string($sid) || 1 !== preg_match($this->pattern, $sid)) {
             return false;
-        } else if (!$this->isEnrollment($sid)) {
+        }
+
+        if (!$this->isEnrollment($sid)) {
             return false;
-        } else if (!in_array(substr($sid, 3, 3), $this->departments, true)) {
+        }
+
+        if (!in_array(substr($sid, 3, 3), $this->departments, true)) {
             return false;
         }
 
@@ -105,11 +111,9 @@ final class StudentId implements Rule
     /**
      * 是否在學.
      *
-     * @param string $sid
      *
-     * @return bool
      */
-    protected function isEnrollment(string $sid): bool
+    private function isEnrollment(string $sid): bool
     {
         $years = $this->currentYear() - $this->startYear($sid);
 
@@ -128,11 +132,9 @@ final class StudentId implements Rule
     /**
      * 入學學年.
      *
-     * @param string $sid
      *
-     * @return int
      */
-    protected function startYear(string $sid): int
+    private function startYear(string $sid): int
     {
         $year = intval(substr($sid, 1, 2));
 
@@ -145,10 +147,8 @@ final class StudentId implements Rule
 
     /**
      * 目前學年.
-     *
-     * @return int
      */
-    protected function currentYear(): int
+    private function currentYear(): int
     {
         $year = intval(date('Y')) - 1911;
 

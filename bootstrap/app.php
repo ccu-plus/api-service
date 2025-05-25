@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -105,7 +107,7 @@ $app->register(Spatie\Fractal\FractalServiceProvider::class);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
-], function (Laravel\Lumen\Routing\Router $router) {
+], function (Laravel\Lumen\Routing\Router $router): void {
     require __DIR__.'/../routes/web.php';
 });
 

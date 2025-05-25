@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Validators\SignInValidator;
@@ -20,9 +22,7 @@ class AuthController extends Controller
     /**
      * 登入.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function signIn(Request $request): JsonResponse
     {
@@ -32,7 +32,9 @@ class AuthController extends Controller
 
         if (false === $cookie) {
             throw new UnauthorizedHttpException('Incorrect username or password.');
-        } else if ($input['type'] === 'alumni' && is_null($input['username'] = $this->username($cookie))) {
+        }
+
+        if ($input['type'] === 'alumni' && is_null($input['username'] = $this->username($cookie))) {
             throw new BadRequestHttpException;
         }
 
@@ -44,9 +46,7 @@ class AuthController extends Controller
     /**
      * 校友取得學號.
      *
-     * @param CookieJar $cookie
      *
-     * @return string|null
      */
     protected function username(CookieJar $cookie): ?string
     {
@@ -66,9 +66,7 @@ class AuthController extends Controller
     /**
      * 註冊.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function signUp(Request $request): JsonResponse
     {
@@ -95,9 +93,7 @@ class AuthController extends Controller
     /**
      * 登出.
      *
-     * @param Request $request
      *
-     * @return JsonResponse
      */
     public function signOut(Request $request): JsonResponse
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Carbon\Carbon;
@@ -48,8 +50,6 @@ final class Comment extends Model
 
     /**
      * 此評論所屬課程.
-     *
-     * @return BelongsTo
      */
     public function course(): BelongsTo
     {
@@ -58,8 +58,6 @@ final class Comment extends Model
 
     /**
      * 此評論所屬使用者.
-     *
-     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -68,8 +66,6 @@ final class Comment extends Model
 
     /**
      * 此評論評論教授.
-     *
-     * @return BelongsTo
      */
     public function professor(): BelongsTo
     {
@@ -78,8 +74,6 @@ final class Comment extends Model
 
     /**
      * 此評論之回覆.
-     *
-     * @return HasMany
      */
     public function comments(): HasMany
     {

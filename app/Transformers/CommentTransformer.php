@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers;
 
 use App\Models\Comment;
@@ -11,9 +13,7 @@ class CommentTransformer extends TransformerAbstract
     /**
      * Comment transformer.
      *
-     * @param Comment $comment
      *
-     * @return array
      */
     public function transform(Comment $comment): array
     {
@@ -36,15 +36,13 @@ class CommentTransformer extends TransformerAbstract
     /**
      * Random token.
      *
-     * @param int $key
      *
-     * @return string
      */
     protected function token(int $key): string
     {
         try {
             $nonce = bin2hex(random_bytes(6));
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             [$micro, $time] = explode(' ', microtime());
 
             $dec = intval($micro * (10 ** 18)) + intval($time);

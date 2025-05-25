@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
@@ -36,8 +38,6 @@ final class Course extends Model
 
     /**
      * 課程評論.
-     *
-     * @return HasMany
      */
     public function comments(): HasMany
     {
@@ -46,8 +46,6 @@ final class Course extends Model
 
     /**
      * 課程所屬系所.
-     *
-     * @return BelongsTo
      */
     public function department(): BelongsTo
     {
@@ -56,8 +54,6 @@ final class Course extends Model
 
     /**
      * 課程所屬向度（通識課程）.
-     *
-     * @return BelongsTo
      */
     public function dimension(): BelongsTo
     {
@@ -66,8 +62,6 @@ final class Course extends Model
 
     /**
      * 課程授課教授.
-     *
-     * @return BelongsToMany
      */
     public function professors(): BelongsToMany
     {
@@ -77,8 +71,6 @@ final class Course extends Model
 
     /**
      * 課程授課學期.
-     *
-     * @return BelongsToMany
      */
     public function semesters(): BelongsToMany
     {
@@ -87,8 +79,6 @@ final class Course extends Model
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array
      */
     public function toSearchableArray(): array
     {

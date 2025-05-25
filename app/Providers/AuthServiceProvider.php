@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Models\User;
@@ -11,10 +13,8 @@ class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Boot the authentication services for the application.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         /** @var AuthManager $auth */
 
@@ -44,7 +44,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         if (empty($apiKey) || !is_string($apiKey)) { // 確認 apiKey 為字串
             return false;
-        } else if (strpos($apiKey, '.') === false) { // 確認 apiKey 含有「.」
+        }
+
+        if (strpos($apiKey, '.') === false) { // 確認 apiKey 含有「.」
             return false;
         }
 
@@ -52,7 +54,9 @@ class AuthServiceProvider extends ServiceProvider
 
         if (empty($token) || empty($hmac)) { // 確認 token 和 hmac 不為空
             return false;
-        } else if (false === ($hmac = base64_decode($hmac, true))) { // 確認 hmac 能正確 base64 decode
+        }
+
+        if (false === ($hmac = base64_decode($hmac, true))) { // 確認 hmac 能正確 base64 decode
             return false;
         }
 

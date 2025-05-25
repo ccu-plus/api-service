@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators;
 
 use App\Http\Validators\Rules\Captcha;
@@ -11,9 +13,7 @@ final class CommentValidator
     /**
      * 評論表單驗證器.
      *
-     * @param Request $request
      *
-     * @return array
      */
     public static function make(Request $request): array
     {

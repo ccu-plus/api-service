@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\Validators;
 
 class IdentityCardNumber extends Validator
@@ -36,9 +38,7 @@ class IdentityCardNumber extends Validator
     /**
      * 檢查身分證字號是否有效.
      *
-     * @param string $icn
      *
-     * @return bool
      */
     public function valid(string $icn): bool
     {
@@ -46,7 +46,7 @@ class IdentityCardNumber extends Validator
             return false;
         }
 
-        $transform = array_map(function ($m, $n) {
+        $transform = array_map(function ($m, $n): int {
             return $m * $n;
         }, $this->explode($icn), $this->weights);
 
@@ -56,7 +56,6 @@ class IdentityCardNumber extends Validator
     /**
      * 將身分證字號轉換為 11 位數字.
      *
-     * @param string $icn
      *
      * @return array<int>
      */

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Laravel\Scout\ScoutServiceProvider as ServiceProvider;
@@ -11,22 +13,18 @@ class ScoutServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->app->configure('scout');
     }
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton(EngineManager::class, function ($app) {
+        $this->app->singleton(EngineManager::class, function ($app): \Laravel\Scout\EngineManager {
             return new EngineManager($app);
         });
 

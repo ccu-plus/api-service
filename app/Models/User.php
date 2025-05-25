@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Carbon\Carbon;
@@ -30,8 +32,6 @@ final class User extends Model implements AuthenticatableContract
 
     /**
      * Get api token attribute.
-     *
-     * @return string
      */
     public function getApiTokenAttribute(): string
     {

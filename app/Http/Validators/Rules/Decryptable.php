@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validators\Rules;
 
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -24,7 +26,7 @@ final class Decryptable implements Rule
 
         try {
             decrypt($value);
-        } catch (DecryptException $e) {
+        } catch (DecryptException $decryptException) {
             return false;
         }
 

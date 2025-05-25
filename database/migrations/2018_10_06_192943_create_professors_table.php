@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -8,12 +10,10 @@ class CreateProfessorsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('professors', function (Blueprint $table) {
+        Schema::create('professors', function (Blueprint $table): void {
             $table->smallIncrements('id');
             $table->string('name', 16)->unique();
             $table->string('name_pinyin')->nullable();
@@ -22,10 +22,8 @@ class CreateProfessorsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('professors');
     }

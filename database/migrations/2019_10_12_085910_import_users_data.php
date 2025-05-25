@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -8,10 +10,8 @@ class ImportUsersData extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         $path = storage_path('app/users.json');
 
@@ -25,7 +25,8 @@ class ImportUsersData extends Migration
 
         foreach ($users as $user) {
             if ($user['nickname'] === 'c229f39e') {
-                $username = $nickname = sprintf('migration-%04d', $migration++);
+                $username = sprintf('migration-%04d', $migration++);
+                $nickname = $username;
                 $email = $user['username'];
             } else {
                 $username = $user['username'];
@@ -48,10 +49,8 @@ class ImportUsersData extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         DB::table('users')->truncate();
     }
