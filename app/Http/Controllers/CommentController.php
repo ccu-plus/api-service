@@ -120,6 +120,8 @@ class CommentController extends Controller
             'challenging' => $commentId ? 0 : $input['challenging'],
             'overall' => $commentId ? 0 : $input['overall'],
             'anonymous' => true,
+            'ip' => $request->ip(),
+            'user_agent' => $request->userAgent(),
         ]);
 
         Cache::forget('latest-comments');
