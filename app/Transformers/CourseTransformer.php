@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use CCUPLUS\EloquentORM\Course;
+use App\Models\Course;
 use Illuminate\Support\Collection;
 use League\Fractal\TransformerAbstract;
 

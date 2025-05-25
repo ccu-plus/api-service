@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Authentication\Authentication;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Support\ServiceProvider;
@@ -40,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->captcha();
+
+        $this->app->singleton('authentication', function () {
+            return new Authentication;
+        });
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use CCUPLUS\EloquentORM\User;
+use App\Models\User;
 use League\Fractal\TransformerAbstract;
 
 class AuthTransformer extends TransformerAbstract

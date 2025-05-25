@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use CCUPLUS\EloquentORM\Course;
+use App\Models\Course;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;

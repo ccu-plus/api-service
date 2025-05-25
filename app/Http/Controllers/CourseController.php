@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transformers\CourseTransformer;
 use Carbon\Carbon;
-use CCUPLUS\EloquentORM\Course;
-use CCUPLUS\EloquentORM\Semester;
+use App\Models\Course;
+use App\Models\Semester;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

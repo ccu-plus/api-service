@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use CCUPLUS\EloquentORM\Comment;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Cache;
 use League\Fractal\TransformerAbstract;
 

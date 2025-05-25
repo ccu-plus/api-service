@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Validators\SignInValidator;
 use App\Http\Validators\SignUpValidator;
 use App\Transformers\AuthTransformer;
-use CCUPLUS\EloquentORM\User;
+use App\Models\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;

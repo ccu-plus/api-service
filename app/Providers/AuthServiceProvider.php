@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use CCUPLUS\EloquentORM\User;
+use App\Models\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Http\Request;
