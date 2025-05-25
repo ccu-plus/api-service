@@ -9,10 +9,12 @@ use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Professor;
 use App\Transformers\CommentTransformer;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class CommentController extends Controller
@@ -40,17 +42,43 @@ class CommentController extends Controller
     }
 
     /**
+     * 評論統計.
+     */
+    public function statistics(): JsonResponse
+    {
+        $statistics = Comment::whereNull('comment_id')
+            ->get(['created_at'])
+            ->each(function (Comment $comment) {
+                $comment->year = $comment->created_at->year;
+            })
+            ->groupBy('year')
+            ->map(function (Collection $collection) {
+                return $collection->count();
+            })
+            ->toArray();
+
+        $total = 0;
+
+        foreach ($statistics as &$statistic) {
+            $statistic = $total = $statistic + $total;
+        }
+
+        return response()->json([
+            'labels' => array_keys($statistics),
+            'value' => array_values($statistics),
+        ]);
+    }
+
+    /**
      * 最新幾則評論.
      */
     public function latest(): JsonResponse
     {
-        $comments = Cache::remember('latest-comments', Carbon::now()->addMonth(), function () {
-            return Comment::with('course', 'course.department', 'user', 'professor')
-                ->whereNull('comment_id')
-                ->take(8)
-                ->latest('created_at')
-                ->get();
-        });
+        $comments = Comment::with('course', 'course.department', 'user', 'professor')
+            ->whereNull('comment_id')
+            ->take(8)
+            ->latest('created_at')
+            ->get();
 
         return fractal()
             ->collection($comments)
@@ -63,6 +91,10 @@ class CommentController extends Controller
      */
     public function store(Request $request, string $code): JsonResponse
     {
+        if (! Str::startsWith($request->ip(), '140.123.')) {
+            throw new AccessDeniedHttpException;
+        }
+
         $input = CommentValidator::make($request);
 
         $commentId = null;
@@ -78,12 +110,16 @@ class CommentController extends Controller
             ->firstOrFail();
 
         $comment = Comment::query()->create([
-            'user_id' => $request->user()->getKey(),
+            'user_id' => 0,
             'course_id' => is_null($commentId) ? $course->getKey() : null,
             'comment_id' => $commentId,
             'professor_id' => is_null($commentId) ? Professor::query()->where('name', '=', $input['professor'])->first()->getKey() : null,
             'content' => $input['content'],
-            'anonymous' => $input['anonymous'],
+            'recommended' => $commentId ? 0 : $input['recommended'],
+            'informative' => $commentId ? 0 : $input['informative'],
+            'challenging' => $commentId ? 0 : $input['challenging'],
+            'overall' => $commentId ? 0 : $input['overall'],
+            'anonymous' => true,
         ]);
 
         Cache::forget('latest-comments');

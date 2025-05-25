@@ -4,40 +4,29 @@ declare(strict_types=1);
 
 namespace App\Http\Validators\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Cache;
 
-final class Captcha implements Rule
+final class Captcha implements ValidationRule
 {
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
+     * Run the validation rule.
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (! is_string($value)) {
-            return false;
+            $fail('驗證碼錯誤');
         }
 
         if (preg_match('/[0-9a-f]{32}\.\d{5}/', $value) !== 1) {
-            return false;
+            $fail('驗證碼錯誤');
         }
 
         [$key, $secret] = explode('.', $value);
 
-        return Cache::pull($key) === $secret;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string|array
-     */
-    public function message()
-    {
-        return '驗證碼錯誤';
+        if (Cache::pull($key) !== $secret) {
+            $fail('驗證碼錯誤');
+        }
     }
 }

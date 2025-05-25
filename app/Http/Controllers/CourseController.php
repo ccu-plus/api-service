@@ -57,13 +57,9 @@ class CourseController extends Controller
      */
     public function show(string $code): JsonResponse
     {
-        $key = sprintf('course-info-%s', $code);
-
-        $course = Cache::remember($key, Carbon::now()->addMonth(), function () use ($code) {
-            return Course::with('department', 'dimension', 'semesters', 'professors')
-                ->where('code', '=', $code)
-                ->firstOrFail();
-        });
+        $course = Course::with('department', 'dimension', 'semesters', 'professors')
+            ->where('code', '=', $code)
+            ->firstOrFail();
 
         return fractal($course)
             ->transformWith(new CourseTransformer)

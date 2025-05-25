@@ -20,7 +20,7 @@ class CourseTransformer extends TransformerAbstract
             'name' => $course->name,
             'credit' => $course->credit,
             'department' => $course->department->name,
-            'dimension' => optional($course->dimension)->name,
+            'dimension' => $course->dimension?->name,
             'semesters' => $course->relationLoaded('semesters') ? $this->semesters($course) : [],
             'professors' => $course->professors->pluck('name')->unique()->values(),
             'recently' => ($course->semesters_count ?? 0) === ($course->newest_semesters_count ?? 0),

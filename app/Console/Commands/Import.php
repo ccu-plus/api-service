@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Commands\Course;
+namespace App\Console\Commands;
 
 use App\Importer\Importer;
 use App\Models\Course;

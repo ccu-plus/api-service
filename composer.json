@@ -7,16 +7,11 @@
   "keywords": [
     "ccu-plus"
   ],
-  "authors": [
-    {
-      "name": "bepsvpt",
-      "email": "og7lsrszah6y3lz@infinitefa.email"
-    }
-  ],
   "require": {
-    "php": "^8.2",
+    "php": "^8.4",
     "ext-intl": "*",
     "ext-json": "*",
+    "ext-pdo": "*",
     "algolia/algoliasearch-client-php": "^4.19",
     "bepsvpt/secure-headers": "^9.0",
     "gregwar/captcha": "^1.2",
@@ -24,7 +19,7 @@
     "laravel/framework": "^12.15",
     "laravel/scout": "^10.15",
     "laravel/tinker": "^2.10",
-    "predis/predis": "^3.0",
+    "paquettg/php-html-parser": "^2.2",
     "spatie/laravel-fractal": "^6.3",
     "thepixeldeveloper/sitemap": "^5.1",
     "vlucas/phpdotenv": "^5.6"
@@ -32,7 +27,7 @@
   "require-dev": {
     "ergebnis/composer-normalize": "^2.47",
     "laravel/pint": "^1.22",
-    "rector/rector": "^1.2"
+    "rector/rector": "^2.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

@@ -15,8 +15,6 @@ class FormValidationTransformer extends TransformerAbstract
      */
     public function transform(MessageBag $bag): array
     {
-        return array_map(function ($msg) {
-            return Arr::first($msg);
-        }, $bag->messages());
+        return array_map(static fn ($msg) => Arr::first($msg), $bag->messages());
     }
 }
