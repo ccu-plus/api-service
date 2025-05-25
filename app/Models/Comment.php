@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property integer $id
- * @property integer $user_id
- * @property integer|null $course_id
- * @property integer|null $comment_id
- * @property integer|null $professor_id
+ * @property int $id
+ * @property int $user_id
+ * @property int|null $course_id
+ * @property int|null $comment_id
+ * @property int|null $professor_id
  * @property string $content
- * @property boolean $anonymous
+ * @property bool $anonymous
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at

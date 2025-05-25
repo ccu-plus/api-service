@@ -42,7 +42,6 @@ class Parser
         ]);
 
         /** @var HtmlNode[] $rows */
-
         $rows = $dom->find('tr')->toArray();
 
         $this->headers = array_map(function (HtmlNode $node): string {
@@ -61,8 +60,6 @@ class Parser
 
     /**
      * 取得系所學院.
-     *
-     *
      */
     protected function college(string $code): string
     {
@@ -72,7 +69,7 @@ class Parser
             'I' => '其他', 'V' => '其他', 'Z' => '其他',
         ];
 
-        if (!isset($colleges[$code[0]])) {
+        if (! isset($colleges[$code[0]])) {
             throw new InvalidArgumentException(sprintf('未知系所：%s', $code));
         }
 
@@ -81,14 +78,11 @@ class Parser
 
     /**
      * 將課程資料轉為 key => value 形式.
-     *
-     * @param Collection $columns
      */
     protected function rowToArray(Collection $columns): array
     {
         foreach ($this->keys() as $key => $value) {
             /** @var HtmlNode $node */
-
             $node = $columns[$key]->firstChild();
 
             $converter = sprintf('parse%s', ucfirst($value));
@@ -123,7 +117,7 @@ class Parser
             }
         }
 
-        if (!in_array('課程大綱', $this->headers, true)) {
+        if (! in_array('課程大綱', $this->headers, true)) {
             array_splice($keys, array_search('outline', $keys, true), 1);
         }
 
@@ -132,14 +126,11 @@ class Parser
 
     /**
      * 取得課程中文及英文名稱.
-     *
-     * @param HtmlNode $node
      */
     private function parseName(HtmlNode $node): array
     {
         /** @var HtmlNode $cht */
         /** @var HtmlNode $eng */
-
         [$cht, , $eng] = $node->getChildren();
 
         return [
@@ -150,8 +141,6 @@ class Parser
 
     /**
      * 取得課程授課教授.
-     *
-     * @param HtmlNode $node
      */
     private function parseProfessor(HtmlNode $node): array
     {
@@ -166,8 +155,6 @@ class Parser
 
     /**
      * 取得課程上課時數.
-     *
-     * @param HtmlNode $node
      */
     private function parseHours(HtmlNode $node): array
     {
@@ -182,8 +169,6 @@ class Parser
 
     /**
      * 取得課程上課時間.
-     *
-     * @param HtmlNode $node
      */
     private function parseTime(HtmlNode $node): array
     {
@@ -198,8 +183,6 @@ class Parser
 
     /**
      * 以星期切割課程授課時間.
-     *
-     *
      */
     private function splitTimeByDay(string $time): array
     {
@@ -225,7 +208,6 @@ class Parser
     /**
      * 取得課程大綱連結.
      *
-     * @param HtmlNode $node
      *
      *
      * @throws ChildNotFoundException

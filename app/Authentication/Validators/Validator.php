@@ -8,8 +8,6 @@ abstract class Validator
 {
     /**
      * 驗證帳號格式.
-     *
-     *
      */
     abstract public function valid(string $username): bool;
 }

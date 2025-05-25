@@ -45,24 +45,22 @@ class Portal extends EntryPoint
 
     /**
      * 檢查是否登入成功.
-     *
-     *
      */
     protected function signedIn(ResponseInterface $response): bool
     {
         $locations = $response->getHeader('location');
 
-        if (!isset($locations[0])) {
+        if (! isset($locations[0])) {
             return false;
         }
 
-        return false !== mb_strpos($locations[0], 'sso_index.php');
+        return mb_strpos($locations[0], 'sso_index.php') !== false;
     }
 
     /**
      * 登入完後處理.
      *
-     * @param CookieJarInterface<CookieJar> $cookie
+     * @param  CookieJarInterface<CookieJar>  $cookie
      */
     protected function postSignedIn(CookieJarInterface $cookie): bool
     {

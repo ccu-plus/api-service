@@ -7,7 +7,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string|null $value
  */
@@ -25,7 +25,7 @@ final class Semester extends Model
      */
     public function getValueAttribute(): ?string
     {
-        if (!$this->exists) {
+        if (! $this->exists) {
             return null;
         }
 
@@ -51,6 +51,6 @@ final class Semester extends Model
             return Str::endsWith($a->name, '上') ? -1 : 1;
         };
 
-        return static::all()->sort($cmp)->last();
+        return self::all()->sort($cmp)->last();
     }
 }

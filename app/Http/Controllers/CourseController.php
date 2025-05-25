@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Transformers\CourseTransformer;
-use Carbon\Carbon;
 use App\Models\Course;
 use App\Models\Semester;
+use App\Transformers\CourseTransformer;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,20 +17,18 @@ class CourseController extends Controller
 {
     /**
      * 搜尋課程.
-     *
-     *
      */
     public function search(Request $request): JsonResponse
     {
         $keyword = '';
 
         foreach (['college', 'department', 'dimension'] as $filter) {
-            if (!empty($input = $request->input($filter))) {
+            if (! empty($input = $request->input($filter))) {
                 $keyword = trim(sprintf('%s %s', $keyword, $input));
             }
         }
 
-        if (!empty($input = $request->input('keyword'))) {
+        if (! empty($input = $request->input('keyword'))) {
             $keyword = empty($keyword)
                 ? to_ascii($input)
                 : sprintf('%s %s', $keyword, $input);
@@ -56,8 +54,6 @@ class CourseController extends Controller
 
     /**
      * 取得課程資訊.
-     *
-     *
      */
     public function show(string $code): JsonResponse
     {

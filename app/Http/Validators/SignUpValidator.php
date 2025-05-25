@@ -12,8 +12,6 @@ final class SignUpValidator
 {
     /**
      * 註冊表單驗證器.
-     *
-     *
      */
     public static function make(Request $request): array
     {
@@ -23,6 +21,6 @@ final class SignUpValidator
             'token' => ['required', 'string', new Decryptable],
         ]);
 
-        return  $v->validated();
+        return $v->validated();
     }
 }

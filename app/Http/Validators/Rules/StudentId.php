@@ -87,21 +87,21 @@ final class StudentId implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $sid
+     * @param  string  $attribute
+     * @param  mixed  $sid
      * @return bool
      */
     public function passes($attribute, $sid)
     {
-        if (!is_string($sid) || 1 !== preg_match($this->pattern, $sid)) {
+        if (! is_string($sid) || preg_match($this->pattern, $sid) !== 1) {
             return false;
         }
 
-        if (!$this->isEnrollment($sid)) {
+        if (! $this->isEnrollment($sid)) {
             return false;
         }
 
-        if (!in_array(substr($sid, 3, 3), $this->departments, true)) {
+        if (! in_array(substr($sid, 3, 3), $this->departments, true)) {
             return false;
         }
 
@@ -110,8 +110,6 @@ final class StudentId implements Rule
 
     /**
      * 是否在學.
-     *
-     *
      */
     private function isEnrollment(string $sid): bool
     {
@@ -131,8 +129,6 @@ final class StudentId implements Rule
 
     /**
      * 入學學年.
-     *
-     *
      */
     private function startYear(string $sid): int
     {

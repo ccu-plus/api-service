@@ -12,7 +12,6 @@ class FormValidationTransformer extends TransformerAbstract
 {
     /**
      * Form validation transformer.
-     *
      */
     public function transform(MessageBag $bag): array
     {

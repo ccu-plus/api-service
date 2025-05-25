@@ -11,9 +11,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
-use Thepixeldeveloper\Sitemap\Urlset;
-use Thepixeldeveloper\Sitemap\Url;
 use Thepixeldeveloper\Sitemap\Drivers\XmlWriterDriver;
+use Thepixeldeveloper\Sitemap\Url;
+use Thepixeldeveloper\Sitemap\Urlset;
 
 class BaseController extends Controller
 {
@@ -39,14 +39,12 @@ class BaseController extends Controller
 
     /**
      * Matomo analytics.
-     *
-     *
      */
     public function push(Request $request): JsonResponse
     {
         $response = response()->json([], 204);
 
-        if (!in_array($action = $request->input('type'), ['pageview', 'search'])) {
+        if (! in_array($action = $request->input('type'), ['pageview', 'search'])) {
             return $response;
         }
 

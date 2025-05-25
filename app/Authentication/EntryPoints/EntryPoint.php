@@ -39,7 +39,7 @@ abstract class EntryPoint
      */
     public function signIn(string $username, string $password)
     {
-        if (!$this->validator()->valid($username)) {
+        if (! $this->validator()->valid($username)) {
             return false;
         }
 
@@ -51,7 +51,7 @@ abstract class EntryPoint
             'timeout' => 5,
         ]);
 
-        if (!$this->signedIn($response) || !$this->postSignedIn($cookie)) {
+        if (! $this->signedIn($response) || ! $this->postSignedIn($cookie)) {
             return false;
         }
 
@@ -61,8 +61,7 @@ abstract class EntryPoint
     /**
      * 登出.
      *
-     * @param CookieJarInterface<CookieJar> $cookie
-     *
+     * @param  CookieJarInterface<CookieJar>  $cookie
      *
      * @throws GuzzleException
      */
@@ -101,15 +100,13 @@ abstract class EntryPoint
 
     /**
      * 檢查是否登入成功.
-     *
-     *
      */
     abstract protected function signedIn(ResponseInterface $response): bool;
 
     /**
      * 登入完後處理.
      *
-     * @param CookieJarInterface<CookieJar> $cookie
+     * @param  CookieJarInterface<CookieJar>  $cookie
      */
     abstract protected function postSignedIn(CookieJarInterface $cookie): bool;
 

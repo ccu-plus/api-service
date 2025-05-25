@@ -15,7 +15,7 @@ class ImportUsersData extends Migration
     {
         $path = storage_path('app/users.json');
 
-        if (!is_file($path)) {
+        if (! is_file($path)) {
             return;
         }
 

@@ -17,7 +17,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /** @var AuthManager $auth */
-
         $auth = $this->app['auth'];
 
         $auth->viaRequest('api', function (Request $request) {
@@ -36,13 +35,12 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Verify api token and retrieve token from it.
      *
-     * @param mixed $apiKey
-     *
+     * @param  mixed  $apiKey
      * @return bool|string
      */
     protected function apiTokenToUserToken($apiKey)
     {
-        if (empty($apiKey) || !is_string($apiKey)) { // 確認 apiKey 為字串
+        if (empty($apiKey) || ! is_string($apiKey)) { // 確認 apiKey 為字串
             return false;
         }
 

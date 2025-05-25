@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class ImportDepartmentsDimensionsProfessorsSemestersData extends Migration
 {
@@ -385,7 +385,7 @@ class ImportDepartmentsDimensionsProfessorsSemestersData extends Migration
             foreach (array_chunk($items, 100) as $chunks) {
                 DB::table($table)->insert($chunks);
             }
-        };
+        }
     }
 
     /**

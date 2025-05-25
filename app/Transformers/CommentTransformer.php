@@ -12,8 +12,6 @@ class CommentTransformer extends TransformerAbstract
 {
     /**
      * Comment transformer.
-     *
-     *
      */
     public function transform(Comment $comment): array
     {
@@ -24,7 +22,7 @@ class CommentTransformer extends TransformerAbstract
             'commented_at' => $comment->created_at->toDateTimeString(),
             'deleted' => $comment->trashed(),
             'comments' => $comment->trashed() ? [] : fractal()->collection($comment->comments)->transformWith(new CommentTransformer)->toArray()['data'],
-            'course' => !$comment->relationLoaded('course') ? null : [
+            'course' => ! $comment->relationLoaded('course') ? null : [
                 'code' => $comment->course->code,
                 'name' => $comment->course->name,
                 'department' => $comment->course->department->name,
@@ -35,8 +33,6 @@ class CommentTransformer extends TransformerAbstract
 
     /**
      * Random token.
-     *
-     *
      */
     protected function token(int $key): string
     {

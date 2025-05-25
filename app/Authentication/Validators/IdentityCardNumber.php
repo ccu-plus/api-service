@@ -37,12 +37,10 @@ class IdentityCardNumber extends Validator
 
     /**
      * 檢查身分證字號是否有效.
-     *
-     *
      */
     public function valid(string $icn): bool
     {
-        if (1 !== preg_match($this->pattern, $icn)) {
+        if (preg_match($this->pattern, $icn) !== 1) {
             return false;
         }
 

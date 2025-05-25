@@ -40,14 +40,13 @@ final class IdentifyCardNumber implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $icn
-     *
+     * @param  string  $attribute
+     * @param  mixed  $icn
      * @return bool
      */
     public function passes($attribute, $icn)
     {
-        if (!is_string($icn) || 1 !== preg_match($this->pattern, $icn)) {
+        if (! is_string($icn) || preg_match($this->pattern, $icn) !== 1) {
             return false;
         }
 
@@ -60,8 +59,6 @@ final class IdentifyCardNumber implements Rule
 
     /**
      * 將身分證字號轉換為 11 位數字.
-     *
-     *
      */
     private function explode(string $icn): array
     {

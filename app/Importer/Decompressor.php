@@ -26,7 +26,7 @@ class Decompressor
 
         unlink($path);
 
-        if (!$extracted) {
+        if (! $extracted) {
             throw new RuntimeException('There is something wrong when extract file');
         }
 
@@ -42,17 +42,17 @@ class Decompressor
 
         $path = tempnam(sys_get_temp_dir(), 'ccu-plus-course-import-');
 
-        if (false === $path) {
+        if ($path === false) {
             throw $exception;
         }
 
-        if (!unlink($path)) {
+        if (! unlink($path)) {
             throw $exception;
         }
 
-        if (!mkdir($path)) {
+        if (! mkdir($path)) {
             throw $exception;
-        };
+        }
 
         return $path;
     }

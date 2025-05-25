@@ -15,8 +15,6 @@ final class SignInValidator
 {
     /**
      * 登入表單驗證器.
-     *
-     *
      */
     public static function make(Request $request): array
     {

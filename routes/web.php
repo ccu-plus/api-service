@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Laravel\Lumen\Routing\Router;
 
 /** @var Router $router */
-
 $router->group(['prefix' => 'courses'], function (Router $router): void {
     $router->get('search', 'CourseController@search');
 

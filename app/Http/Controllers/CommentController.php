@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Validators\CommentValidator;
-use App\Transformers\CommentTransformer;
-use Carbon\Carbon;
 use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Professor;
+use App\Transformers\CommentTransformer;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -19,13 +19,10 @@ class CommentController extends Controller
 {
     /**
      * 取得課程評論.
-     *
-     *
      */
     public function index(string $code): JsonResponse
     {
         /** @var Course $course */
-
         $course = Course::query()
             ->where('code', '=', $code)
             ->firstOrFail();
@@ -63,8 +60,6 @@ class CommentController extends Controller
 
     /**
      * 新增評論.
-     *
-     *
      */
     public function store(Request $request, string $code): JsonResponse
     {

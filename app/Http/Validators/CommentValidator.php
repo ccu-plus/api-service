@@ -12,8 +12,6 @@ final class CommentValidator
 {
     /**
      * 評論表單驗證器.
-     *
-     *
      */
     public static function make(Request $request): array
     {
@@ -25,6 +23,6 @@ final class CommentValidator
             'reply_to' => 'required_without:professor|string|size:12',
         ]);
 
-        return  $v->validated();
+        return $v->validated();
     }
 }

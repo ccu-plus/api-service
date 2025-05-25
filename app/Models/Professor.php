@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string|null $name_pinyin
  */

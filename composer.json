@@ -1,10 +1,12 @@
 {
   "name": "ccu-plus/api-service",
   "description": "CCU PLUS API Service.",
-  "keywords": ["ccu-plus"],
-  "version": "1.0.4",
   "license": "AGPL-3.0-only",
   "type": "project",
+  "version": "1.0.4",
+  "keywords": [
+    "ccu-plus"
+  ],
   "authors": [
     {
       "name": "bepsvpt",
@@ -26,12 +28,16 @@
     "laravel/tinker": "^2.10",
     "predis/predis": "^3.0",
     "spatie/laravel-fractal": "^6.3",
-    "vlucas/phpdotenv": "^5.6",
-    "thepixeldeveloper/sitemap": "^5.1"
+    "thepixeldeveloper/sitemap": "^5.1",
+    "vlucas/phpdotenv": "^5.6"
   },
   "require-dev": {
+    "ergebnis/composer-normalize": "^2.47",
+    "laravel/pint": "^1.22",
     "rector/rector": "^1.2"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "App\\": "app/"
@@ -45,9 +51,16 @@
       "database/"
     ]
   },
-  "scripts": {
-    "rector": "rector process --memory-limit=-1"
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  "scripts": {
+    "format": [
+      "@putenv XDEBUG_MODE=off",
+      "pint -vvv --cache-file=.pint.php --no-interaction"
+    ],
+    "rector": "rector process --memory-limit=-1"
+  }
 }

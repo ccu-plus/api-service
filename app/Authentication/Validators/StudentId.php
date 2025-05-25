@@ -91,20 +91,18 @@ class StudentId extends Validator
 
     /**
      * 檢查學號是否有效.
-     *
-     *
      */
     public function valid(string $sid): bool
     {
-        if (1 !== preg_match($this->pattern, $sid)) {
+        if (preg_match($this->pattern, $sid) !== 1) {
             return false;
         }
 
-        if (!$this->isEnrollment($sid)) {
+        if (! $this->isEnrollment($sid)) {
             return false;
         }
 
-        if (!in_array(substr($sid, 3, 3), $this->departments, true)) {
+        if (! in_array(substr($sid, 3, 3), $this->departments, true)) {
             return false;
         }
 
@@ -113,8 +111,6 @@ class StudentId extends Validator
 
     /**
      * 是否在學.
-     *
-     *
      */
     protected function isEnrollment(string $sid): bool
     {
@@ -134,8 +130,6 @@ class StudentId extends Validator
 
     /**
      * 入學學年.
-     *
-     *
      */
     protected function startYear(string $sid): int
     {

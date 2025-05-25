@@ -9,7 +9,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $username
  * @property string $nickname
  * @property string|null $email

@@ -9,18 +9,16 @@ use Illuminate\Contracts\Validation\Rule;
 
 final class Decryptable implements Rule
 {
-
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
-     *
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        if (!is_string($value)) {
+        if (! is_string($value)) {
             return false;
         }
 

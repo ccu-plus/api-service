@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Laravel\Scout\ScoutServiceProvider as ServiceProvider;
 use Laravel\Scout\Console\FlushCommand;
 use Laravel\Scout\Console\ImportCommand;
 use Laravel\Scout\EngineManager;
+use Laravel\Scout\ScoutServiceProvider as ServiceProvider;
 
 class ScoutServiceProvider extends ServiceProvider
 {

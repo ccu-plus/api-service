@@ -6,8 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Validators\SignInValidator;
 use App\Http\Validators\SignUpValidator;
-use App\Transformers\AuthTransformer;
 use App\Models\User;
+use App\Transformers\AuthTransformer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Http\JsonResponse;
@@ -21,8 +21,6 @@ class AuthController extends Controller
 {
     /**
      * 登入.
-     *
-     *
      */
     public function signIn(Request $request): JsonResponse
     {
@@ -30,7 +28,7 @@ class AuthController extends Controller
 
         $cookie = app('authentication')->signIn($input['username'], $input['password'], $input['type']);
 
-        if (false === $cookie) {
+        if ($cookie === false) {
             throw new UnauthorizedHttpException('Incorrect username or password.');
         }
 
@@ -45,8 +43,6 @@ class AuthController extends Controller
 
     /**
      * 校友取得學號.
-     *
-     *
      */
     protected function username(CookieJar $cookie): ?string
     {
@@ -56,7 +52,7 @@ class AuthController extends Controller
 
         $content = $response->getBody()->getContents();
 
-        if (0 === preg_match('/學號.+(\d{9})/suU', $content, $matches)) {
+        if (preg_match('/學號.+(\d{9})/suU', $content, $matches) === 0) {
             return null;
         }
 
@@ -65,8 +61,6 @@ class AuthController extends Controller
 
     /**
      * 註冊.
-     *
-     *
      */
     public function signUp(Request $request): JsonResponse
     {
@@ -92,8 +86,6 @@ class AuthController extends Controller
 
     /**
      * 登出.
-     *
-     *
      */
     public function signOut(Request $request): JsonResponse
     {

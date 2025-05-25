@@ -54,13 +54,13 @@ class Downloader
     {
         $path = tempnam(sys_get_temp_dir(), 'ccu-plus-course-import-');
 
-        if (false === $path) {
+        if ($path === false) {
             throw new RuntimeException('Could not create temp file.');
         }
 
         $pathWithExtension = sprintf('%s.tgz', $path);
 
-        if (!rename($path, $pathWithExtension)) {
+        if (! rename($path, $pathWithExtension)) {
             unlink($path);
 
             throw new RuntimeException('Could not create temp file.');

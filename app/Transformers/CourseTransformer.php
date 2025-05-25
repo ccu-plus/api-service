@@ -12,8 +12,6 @@ class CourseTransformer extends TransformerAbstract
 {
     /**
      * Course transformer.
-     *
-     *
      */
     public function transform(Course $course): array
     {
@@ -32,8 +30,6 @@ class CourseTransformer extends TransformerAbstract
 
     /**
      * 課程各學期資料.
-     *
-     *
      */
     protected function semesters(Course $course): Collection
     {

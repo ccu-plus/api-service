@@ -12,8 +12,6 @@ class AccountController extends Controller
 {
     /**
      * Account profile.
-     *
-     *
      */
     public function profile(Request $request): JsonResponse
     {

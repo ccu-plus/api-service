@@ -40,17 +40,16 @@ class Authentication
             $target = ucfirst(mb_strtolower($target))
         );
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new InvalidArgumentException(
                 sprintf('%s is not a valid entry point.', $target)
             );
         }
 
         /** @var CookieJarInterface<CookieJar>|false $cookie */
-
         $cookie = (new $class(new Client))->signIn($username, $password);
 
-        if (false === $cookie) {
+        if ($cookie === false) {
             return false;
         }
 
@@ -61,8 +60,6 @@ class Authentication
 
     /**
      * 設置 target cookie.
-     *
-     *
      */
     protected function targetCookie(string $target): SetCookie
     {
@@ -76,7 +73,7 @@ class Authentication
     /**
      * 登出用戶.
      *
-     * @param CookieJar<CookieJar> $jar
+     * @param  CookieJar<CookieJar>  $jar
      */
     public function signOut(CookieJar $jar): bool
     {

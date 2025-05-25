@@ -21,13 +21,13 @@ class ImportCommentsData extends Migration
 
         $path3 = storage_path('app/comment_professor.json');
 
-        if (!is_file($path1) || !is_file($path2) || !is_file($path3)) {
+        if (! is_file($path1) || ! is_file($path2) || ! is_file($path3)) {
             return;
         }
 
         $comments = json_decode(file_get_contents($path1), true);
 
-        $professors = json_decode(file_get_contents($path2), true);;
+        $professors = json_decode(file_get_contents($path2), true);
 
         $professors = array_combine(array_column($professors, 'id'), array_column($professors, 'name'));
 

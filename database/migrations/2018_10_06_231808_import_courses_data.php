@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Migrations\Migration;
 
 class ImportCoursesData extends Migration
 {
@@ -55,7 +55,7 @@ class ImportCoursesData extends Migration
 
             foreach ($course['professors'] as $semester => $professor) {
                 foreach ($professor as $user) {
-                    if ('未公佈' === $user['name']) {
+                    if ($user['name'] === '未公佈') {
                         $user['name'] = '教師未定';
                     }
 

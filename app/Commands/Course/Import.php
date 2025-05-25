@@ -83,7 +83,6 @@ class Import extends Command
                 }
 
                 /** @var Course $course */
-
                 $course = Course::query()->firstOrCreate(['code' => $info['code']], [
                     'name' => $info['name']['cht'],
                     'name_en' => $info['name']['eng'],
@@ -104,7 +103,7 @@ class Import extends Command
 
                     $pivot = $course->professors()->newPivot();
 
-                    if (!$pivot->where($attributes)->exists()) {
+                    if (! $pivot->where($attributes)->exists()) {
                         $pivot->insert($attributes);
                     }
                 }
@@ -124,7 +123,6 @@ class Import extends Command
         );
 
         /** @var Semester $semester */
-
         $semester = Semester::query()->firstOrCreate(['name' => $name]);
 
         if ($semester->wasRecentlyCreated || $this->option('force')) {
@@ -138,8 +136,6 @@ class Import extends Command
 
     /**
      * 確保系所存在，並取得所有系所資料.
-     *
-     *
      */
     protected function departments(array $departments): array
     {
@@ -152,9 +148,9 @@ class Import extends Command
 
             if (is_null($cdept) && is_null($ndept)) { // 如果皆為 null，代表尚無此系所資料
                 Department::query()->create(compact('college', 'name', 'code'));
-            } else if (!is_null($cdept) && is_null($ndept) ) { // 如果 code 存在但名稱不存在，代表系所名稱變更
+            } elseif (! is_null($cdept) && is_null($ndept)) { // 如果 code 存在但名稱不存在，代表系所名稱變更
                 $cdept->update(compact('college', 'name'));
-            } else if (is_null($cdept) && !is_null($ndept)) { // 如果名稱存在但 code 不存在，代表系所代碼變更
+            } elseif (is_null($cdept) && ! is_null($ndept)) { // 如果名稱存在但 code 不存在，代表系所代碼變更
                 $ndept->update(compact('code'));
             }
         }
@@ -164,8 +160,6 @@ class Import extends Command
 
     /**
      * 確保教授存在，並取得所有教授資料.
-     *
-     *
      */
     protected function professors(array $departments): array
     {

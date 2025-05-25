@@ -44,8 +44,6 @@ class Grade extends EntryPoint
 
     /**
      * 檢查是否登入成功.
-     *
-     *
      */
     protected function signedIn(ResponseInterface $response): bool
     {
@@ -55,13 +53,13 @@ class Grade extends EntryPoint
 
         $content = $response->getBody()->getContents();
 
-        return false !== mb_strpos($content, '國立中正大學');
+        return mb_strpos($content, '國立中正大學') !== false;
     }
 
     /**
      * 登入完後處理.
      *
-     * @param CookieJarInterface<CookieJar> $cookie
+     * @param  CookieJarInterface<CookieJar>  $cookie
      */
     protected function postSignedIn(CookieJarInterface $cookie): bool
     {
